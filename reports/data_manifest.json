@@ -1,0 +1,1838 @@
+{
+  "schema_version": 1,
+  "datasets": [
+    {
+      "cache_version": 1,
+      "dataset": "actor",
+      "mode": "raw",
+      "source_revision": "f1fc0d14b3b019c562737240d06ec83b07d16a8f",
+      "split_source": "Geom-GCN film_split_0.6_0.2_{0..9}",
+      "split_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "split_seed": null,
+      "graph_policy": "undirected_coalesced_without_self_loops",
+      "source_edge_policy": "upstream_PyG_edges",
+      "feature_transform": "none",
+      "node_id_scope": "version_local; no raw-filtered mapping supplied",
+      "fingerprint": "3ae9d71c0d2e5941e10468464ba30bbb2f904fe4f417a252a2c04dbeb473acfd",
+      "summary": {
+        "num_nodes": 7600,
+        "num_features": 932,
+        "num_classes": 5,
+        "num_edges_directed": 53318,
+        "num_edges_undirected": 26659,
+        "average_degree": 7.015526315789474,
+        "isolated_nodes": 0,
+        "class_counts": [
+          853,
+          1337,
+          1630,
+          1815,
+          1965
+        ],
+        "splits": [
+          {
+            "split_id": 0,
+            "train_nodes": 3648,
+            "train_class_counts": [
+              434,
+              646,
+              768,
+              850,
+              950
+            ],
+            "val_nodes": 2432,
+            "val_class_counts": [
+              249,
+              429,
+              543,
+              583,
+              628
+            ],
+            "test_nodes": 1520,
+            "test_class_counts": [
+              170,
+              262,
+              319,
+              382,
+              387
+            ]
+          },
+          {
+            "split_id": 1,
+            "train_nodes": 3648,
+            "train_class_counts": [
+              417,
+              643,
+              791,
+              849,
+              948
+            ],
+            "val_nodes": 2432,
+            "val_class_counts": [
+              263,
+              431,
+              498,
+              600,
+              640
+            ],
+            "test_nodes": 1520,
+            "test_class_counts": [
+              173,
+              263,
+              341,
+              366,
+              377
+            ]
+          },
+          {
+            "split_id": 2,
+            "train_nodes": 3648,
+            "train_class_counts": [
+              420,
+              657,
+              759,
+              870,
+              942
+            ],
+            "val_nodes": 2432,
+            "val_class_counts": [
+              267,
+              427,
+              546,
+              571,
+              621
+            ],
+            "test_nodes": 1520,
+            "test_class_counts": [
+              166,
+              253,
+              325,
+              374,
+              402
+            ]
+          },
+          {
+            "split_id": 3,
+            "train_nodes": 3648,
+            "train_class_counts": [
+              407,
+              627,
+              808,
+              890,
+              916
+            ],
+            "val_nodes": 2432,
+            "val_class_counts": [
+              270,
+              442,
+              502,
+              556,
+              662
+            ],
+            "test_nodes": 1520,
+            "test_class_counts": [
+              176,
+              268,
+              320,
+              369,
+              387
+            ]
+          },
+          {
+            "split_id": 4,
+            "train_nodes": 3648,
+            "train_class_counts": [
+              431,
+              616,
+              795,
+              843,
+              963
+            ],
+            "val_nodes": 2432,
+            "val_class_counts": [
+              267,
+              431,
+              491,
+              602,
+              641
+            ],
+            "test_nodes": 1520,
+            "test_class_counts": [
+              155,
+              290,
+              344,
+              370,
+              361
+            ]
+          },
+          {
+            "split_id": 5,
+            "train_nodes": 3648,
+            "train_class_counts": [
+              417,
+              636,
+              759,
+              874,
+              962
+            ],
+            "val_nodes": 2432,
+            "val_class_counts": [
+              265,
+              449,
+              542,
+              567,
+              609
+            ],
+            "test_nodes": 1520,
+            "test_class_counts": [
+              171,
+              252,
+              329,
+              374,
+              394
+            ]
+          },
+          {
+            "split_id": 6,
+            "train_nodes": 3648,
+            "train_class_counts": [
+              418,
+              647,
+              740,
+              885,
+              958
+            ],
+            "val_nodes": 2432,
+            "val_class_counts": [
+              284,
+              404,
+              519,
+              580,
+              645
+            ],
+            "test_nodes": 1520,
+            "test_class_counts": [
+              151,
+              286,
+              371,
+              350,
+              362
+            ]
+          },
+          {
+            "split_id": 7,
+            "train_nodes": 3648,
+            "train_class_counts": [
+              421,
+              631,
+              771,
+              854,
+              971
+            ],
+            "val_nodes": 2432,
+            "val_class_counts": [
+              265,
+              427,
+              532,
+              591,
+              617
+            ],
+            "test_nodes": 1520,
+            "test_class_counts": [
+              167,
+              279,
+              327,
+              370,
+              377
+            ]
+          },
+          {
+            "split_id": 8,
+            "train_nodes": 3648,
+            "train_class_counts": [
+              376,
+              654,
+              770,
+              887,
+              961
+            ],
+            "val_nodes": 2432,
+            "val_class_counts": [
+              285,
+              431,
+              519,
+              564,
+              633
+            ],
+            "test_nodes": 1520,
+            "test_class_counts": [
+              192,
+              252,
+              341,
+              364,
+              371
+            ]
+          },
+          {
+            "split_id": 9,
+            "train_nodes": 3648,
+            "train_class_counts": [
+              415,
+              660,
+              804,
+              861,
+              908
+            ],
+            "val_nodes": 2432,
+            "val_class_counts": [
+              274,
+              426,
+              506,
+              588,
+              638
+            ],
+            "test_nodes": 1520,
+            "test_class_counts": [
+              164,
+              251,
+              320,
+              366,
+              419
+            ]
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "raw/actor/raw/out1_node_feature_label.txt",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/new_data/film/out1_node_feature_label.txt",
+          "sha256": "1d5cdd094f8b91e770f6decfca85b35cf42f75d1efb51055fd6af16e11820ff8",
+          "bytes": 207718
+        },
+        {
+          "path": "raw/actor/raw/out1_graph_edges.txt",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/new_data/film/out1_graph_edges.txt",
+          "sha256": "997cdce67ea9c29257d3ffe796328391931901cf823830affa453178b60e2c3e",
+          "bytes": 323820
+        },
+        {
+          "path": "raw/actor/raw/film_split_0.6_0.2_0.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/film_split_0.6_0.2_0.npz",
+          "sha256": "4505a41d4e90abd94d1ec22571ce528b09ad7cf20d87f764aebd4177590767f5",
+          "bytes": 4214
+        },
+        {
+          "path": "raw/actor/raw/film_split_0.6_0.2_1.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/film_split_0.6_0.2_1.npz",
+          "sha256": "1871b0d24e3977c41e378fd24acc8025b63f86b77739be77a5b558d1287f207d",
+          "bytes": 4231
+        },
+        {
+          "path": "raw/actor/raw/film_split_0.6_0.2_2.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/film_split_0.6_0.2_2.npz",
+          "sha256": "d26680e911ef3ecc9fc2a26d90c9d35028c63aadd7a5aea774649d1496c282cb",
+          "bytes": 4224
+        },
+        {
+          "path": "raw/actor/raw/film_split_0.6_0.2_3.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/film_split_0.6_0.2_3.npz",
+          "sha256": "6755ad5f6a0be8594b344af3d2261eed935b83b73c4d70136e1a7beea7f78cb0",
+          "bytes": 4207
+        },
+        {
+          "path": "raw/actor/raw/film_split_0.6_0.2_4.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/film_split_0.6_0.2_4.npz",
+          "sha256": "328fdca62b25074f21f2922518e042f24b3b8a1fc378f9dfb2cae36439aed902",
+          "bytes": 4233
+        },
+        {
+          "path": "raw/actor/raw/film_split_0.6_0.2_5.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/film_split_0.6_0.2_5.npz",
+          "sha256": "5b3161a8dc8de4b2e651ebd56d68e768d1377044895b325566117fe26ab81cb7",
+          "bytes": 4224
+        },
+        {
+          "path": "raw/actor/raw/film_split_0.6_0.2_6.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/film_split_0.6_0.2_6.npz",
+          "sha256": "e251b38abd4d7931b5e9ae5aba99dcdf87f0be283bdf6e65421274a1c9ef1df6",
+          "bytes": 4221
+        },
+        {
+          "path": "raw/actor/raw/film_split_0.6_0.2_7.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/film_split_0.6_0.2_7.npz",
+          "sha256": "12164ef9f5620a2f12a387f4f2b8636859d42201101d6d32829ade62d5a98326",
+          "bytes": 4205
+        },
+        {
+          "path": "raw/actor/raw/film_split_0.6_0.2_8.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/film_split_0.6_0.2_8.npz",
+          "sha256": "405cd1f7f631f678119f8bf2405809e86614d532985beb59566fcf95abd35b3f",
+          "bytes": 4217
+        },
+        {
+          "path": "raw/actor/raw/film_split_0.6_0.2_9.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/film_split_0.6_0.2_9.npz",
+          "sha256": "505691c5d41bb37b20d085415dcdde2e8e68b5bc4e1feb2c0e361308002012bb",
+          "bytes": 4208
+        }
+      ],
+      "versions": {
+        "torch": "2.8.0+cpu",
+        "numpy": "2.3.4",
+        "torch_geometric": "2.7.0"
+      }
+    },
+    {
+      "cache_version": 1,
+      "dataset": "chameleon",
+      "mode": "filtered",
+      "source_revision": "a431395582e929d88271309716bea4fe24ce6318",
+      "split_source": "Platonov et al. official NPZ masks",
+      "split_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "split_seed": null,
+      "graph_policy": "undirected_coalesced_without_self_loops",
+      "source_edge_policy": "upstream_NPZ_edges",
+      "feature_transform": "none",
+      "node_id_scope": "version_local; no raw-filtered mapping supplied",
+      "fingerprint": "194d0ee2c5405b4c22fcb6359cb79b60ca13e4cbd36d270d6d0dc6454f8d10ed",
+      "summary": {
+        "num_nodes": 890,
+        "num_features": 2325,
+        "num_classes": 5,
+        "num_edges_directed": 17708,
+        "num_edges_undirected": 8854,
+        "average_degree": 19.896629213483145,
+        "isolated_nodes": 0,
+        "class_counts": [
+          242,
+          134,
+          209,
+          164,
+          141
+        ],
+        "splits": [
+          {
+            "split_id": 0,
+            "train_nodes": 409,
+            "train_class_counts": [
+              114,
+              57,
+              99,
+              74,
+              65
+            ],
+            "val_nodes": 287,
+            "val_class_counts": [
+              84,
+              42,
+              65,
+              55,
+              41
+            ],
+            "test_nodes": 194,
+            "test_class_counts": [
+              44,
+              35,
+              45,
+              35,
+              35
+            ]
+          },
+          {
+            "split_id": 1,
+            "train_nodes": 427,
+            "train_class_counts": [
+              128,
+              51,
+              102,
+              73,
+              73
+            ],
+            "val_nodes": 302,
+            "val_class_counts": [
+              72,
+              55,
+              70,
+              62,
+              43
+            ],
+            "test_nodes": 161,
+            "test_class_counts": [
+              42,
+              28,
+              37,
+              29,
+              25
+            ]
+          },
+          {
+            "split_id": 2,
+            "train_nodes": 422,
+            "train_class_counts": [
+              126,
+              60,
+              85,
+              72,
+              79
+            ],
+            "val_nodes": 290,
+            "val_class_counts": [
+              76,
+              48,
+              85,
+              44,
+              37
+            ],
+            "test_nodes": 178,
+            "test_class_counts": [
+              40,
+              26,
+              39,
+              48,
+              25
+            ]
+          },
+          {
+            "split_id": 3,
+            "train_nodes": 412,
+            "train_class_counts": [
+              111,
+              62,
+              98,
+              78,
+              63
+            ],
+            "val_nodes": 294,
+            "val_class_counts": [
+              78,
+              43,
+              68,
+              57,
+              48
+            ],
+            "test_nodes": 184,
+            "test_class_counts": [
+              53,
+              29,
+              43,
+              29,
+              30
+            ]
+          },
+          {
+            "split_id": 4,
+            "train_nodes": 440,
+            "train_class_counts": [
+              113,
+              77,
+              97,
+              84,
+              69
+            ],
+            "val_nodes": 268,
+            "val_class_counts": [
+              70,
+              35,
+              68,
+              51,
+              44
+            ],
+            "test_nodes": 182,
+            "test_class_counts": [
+              59,
+              22,
+              44,
+              29,
+              28
+            ]
+          },
+          {
+            "split_id": 5,
+            "train_nodes": 434,
+            "train_class_counts": [
+              121,
+              61,
+              110,
+              72,
+              70
+            ],
+            "val_nodes": 292,
+            "val_class_counts": [
+              84,
+              42,
+              62,
+              54,
+              50
+            ],
+            "test_nodes": 164,
+            "test_class_counts": [
+              37,
+              31,
+              37,
+              38,
+              21
+            ]
+          },
+          {
+            "split_id": 6,
+            "train_nodes": 418,
+            "train_class_counts": [
+              108,
+              58,
+              109,
+              75,
+              68
+            ],
+            "val_nodes": 284,
+            "val_class_counts": [
+              77,
+              48,
+              59,
+              57,
+              43
+            ],
+            "test_nodes": 188,
+            "test_class_counts": [
+              57,
+              28,
+              41,
+              32,
+              30
+            ]
+          },
+          {
+            "split_id": 7,
+            "train_nodes": 421,
+            "train_class_counts": [
+              117,
+              61,
+              111,
+              71,
+              61
+            ],
+            "val_nodes": 310,
+            "val_class_counts": [
+              82,
+              46,
+              69,
+              67,
+              46
+            ],
+            "test_nodes": 159,
+            "test_class_counts": [
+              43,
+              27,
+              29,
+              26,
+              34
+            ]
+          },
+          {
+            "split_id": 8,
+            "train_nodes": 431,
+            "train_class_counts": [
+              111,
+              61,
+              102,
+              79,
+              78
+            ],
+            "val_nodes": 287,
+            "val_class_counts": [
+              87,
+              40,
+              68,
+              52,
+              40
+            ],
+            "test_nodes": 172,
+            "test_class_counts": [
+              44,
+              33,
+              39,
+              33,
+              23
+            ]
+          },
+          {
+            "split_id": 9,
+            "train_nodes": 426,
+            "train_class_counts": [
+              119,
+              71,
+              100,
+              75,
+              61
+            ],
+            "val_nodes": 278,
+            "val_class_counts": [
+              85,
+              34,
+              64,
+              55,
+              40
+            ],
+            "test_nodes": 186,
+            "test_class_counts": [
+              38,
+              29,
+              45,
+              34,
+              40
+            ]
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "raw/chameleon/filtered/chameleon_filtered.npz",
+          "url": "https://raw.githubusercontent.com/yandex-research/heterophilous-graphs/a431395582e929d88271309716bea4fe24ce6318/data/chameleon_filtered.npz",
+          "sha256": "bf46f07e1fb5249280447e5fe3100f3e82fc4b93ad1e13ffcfdec924b6ac0bb5",
+          "bytes": 58924
+        }
+      ],
+      "versions": {
+        "torch": "2.8.0+cpu",
+        "numpy": "2.3.4",
+        "torch_geometric": "2.7.0"
+      }
+    },
+    {
+      "cache_version": 1,
+      "dataset": "chameleon",
+      "mode": "raw",
+      "source_revision": "f1fc0d14b3b019c562737240d06ec83b07d16a8f",
+      "split_source": "Geom-GCN chameleon_split_0.6_0.2_{0..9}",
+      "split_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "split_seed": null,
+      "graph_policy": "undirected_coalesced_without_self_loops",
+      "source_edge_policy": "upstream_PyG_edges",
+      "feature_transform": "none",
+      "node_id_scope": "version_local; no raw-filtered mapping supplied",
+      "fingerprint": "3a9dc043d524dc43b3f289d318004cd63bf24d30b9e2d19437e03b87e38641bb",
+      "summary": {
+        "num_nodes": 2277,
+        "num_features": 2325,
+        "num_classes": 5,
+        "num_edges_directed": 62742,
+        "num_edges_undirected": 31371,
+        "average_degree": 27.55467720685112,
+        "isolated_nodes": 0,
+        "class_counts": [
+          456,
+          460,
+          453,
+          521,
+          387
+        ],
+        "splits": [
+          {
+            "split_id": 0,
+            "train_nodes": 1092,
+            "train_class_counts": [
+              225,
+              220,
+              218,
+              241,
+              188
+            ],
+            "val_nodes": 729,
+            "val_class_counts": [
+              148,
+              143,
+              148,
+              178,
+              112
+            ],
+            "test_nodes": 456,
+            "test_class_counts": [
+              83,
+              97,
+              87,
+              102,
+              87
+            ]
+          },
+          {
+            "split_id": 1,
+            "train_nodes": 1092,
+            "train_class_counts": [
+              220,
+              197,
+              242,
+              242,
+              191
+            ],
+            "val_nodes": 729,
+            "val_class_counts": [
+              150,
+              159,
+              128,
+              177,
+              115
+            ],
+            "test_nodes": 456,
+            "test_class_counts": [
+              86,
+              104,
+              83,
+              102,
+              81
+            ]
+          },
+          {
+            "split_id": 2,
+            "train_nodes": 1092,
+            "train_class_counts": [
+              222,
+              233,
+              206,
+              251,
+              180
+            ],
+            "val_nodes": 729,
+            "val_class_counts": [
+              145,
+              146,
+              161,
+              158,
+              119
+            ],
+            "test_nodes": 456,
+            "test_class_counts": [
+              89,
+              81,
+              86,
+              112,
+              88
+            ]
+          },
+          {
+            "split_id": 3,
+            "train_nodes": 1092,
+            "train_class_counts": [
+              219,
+              218,
+              219,
+              256,
+              180
+            ],
+            "val_nodes": 729,
+            "val_class_counts": [
+              141,
+              150,
+              146,
+              167,
+              125
+            ],
+            "test_nodes": 456,
+            "test_class_counts": [
+              96,
+              92,
+              88,
+              98,
+              82
+            ]
+          },
+          {
+            "split_id": 4,
+            "train_nodes": 1092,
+            "train_class_counts": [
+              209,
+              246,
+              210,
+              236,
+              191
+            ],
+            "val_nodes": 729,
+            "val_class_counts": [
+              140,
+              135,
+              155,
+              179,
+              120
+            ],
+            "test_nodes": 456,
+            "test_class_counts": [
+              107,
+              79,
+              88,
+              106,
+              76
+            ]
+          },
+          {
+            "split_id": 5,
+            "train_nodes": 1092,
+            "train_class_counts": [
+              226,
+              214,
+              232,
+              238,
+              182
+            ],
+            "val_nodes": 729,
+            "val_class_counts": [
+              147,
+              140,
+              142,
+              168,
+              132
+            ],
+            "test_nodes": 456,
+            "test_class_counts": [
+              83,
+              106,
+              79,
+              115,
+              73
+            ]
+          },
+          {
+            "split_id": 6,
+            "train_nodes": 1092,
+            "train_class_counts": [
+              212,
+              220,
+              223,
+              251,
+              186
+            ],
+            "val_nodes": 729,
+            "val_class_counts": [
+              152,
+              144,
+              127,
+              178,
+              128
+            ],
+            "test_nodes": 456,
+            "test_class_counts": [
+              92,
+              96,
+              103,
+              92,
+              73
+            ]
+          },
+          {
+            "split_id": 7,
+            "train_nodes": 1092,
+            "train_class_counts": [
+              224,
+              206,
+              237,
+              246,
+              179
+            ],
+            "val_nodes": 729,
+            "val_class_counts": [
+              147,
+              140,
+              141,
+              178,
+              123
+            ],
+            "test_nodes": 456,
+            "test_class_counts": [
+              85,
+              114,
+              75,
+              97,
+              85
+            ]
+          },
+          {
+            "split_id": 8,
+            "train_nodes": 1092,
+            "train_class_counts": [
+              212,
+              221,
+              224,
+              251,
+              184
+            ],
+            "val_nodes": 729,
+            "val_class_counts": [
+              150,
+              142,
+              139,
+              164,
+              134
+            ],
+            "test_nodes": 456,
+            "test_class_counts": [
+              94,
+              97,
+              90,
+              106,
+              69
+            ]
+          },
+          {
+            "split_id": 9,
+            "train_nodes": 1092,
+            "train_class_counts": [
+              224,
+              239,
+              218,
+              239,
+              172
+            ],
+            "val_nodes": 729,
+            "val_class_counts": [
+              154,
+              131,
+              146,
+              170,
+              128
+            ],
+            "test_nodes": 456,
+            "test_class_counts": [
+              78,
+              90,
+              89,
+              112,
+              87
+            ]
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "raw/chameleon/raw/out1_node_feature_label.txt",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/new_data/chameleon/out1_node_feature_label.txt",
+          "sha256": "5fd29736ff31b43a1bfcf305bc8b4cffc3103fb0957667976b2ea0f78aedcf5b",
+          "bytes": 10602901
+        },
+        {
+          "path": "raw/chameleon/raw/out1_graph_edges.txt",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/new_data/chameleon/out1_graph_edges.txt",
+          "sha256": "45ac593de9207470090230c8fd76beeb2f60b5371a9be088e8bf31e7f0619a4b",
+          "bytes": 332448
+        },
+        {
+          "path": "raw/chameleon/raw/chameleon_split_0.6_0.2_0.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/chameleon_split_0.6_0.2_0.npz",
+          "sha256": "36605525b69be4e7df5b31fe6a1d044288c6ebf9f9f0514ca151f6a36afc5e8b",
+          "bytes": 1775
+        },
+        {
+          "path": "raw/chameleon/raw/chameleon_split_0.6_0.2_1.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/chameleon_split_0.6_0.2_1.npz",
+          "sha256": "d0779d5a1bedf1967d394468a52c0175fb00595d361fba897faf73322386c952",
+          "bytes": 1779
+        },
+        {
+          "path": "raw/chameleon/raw/chameleon_split_0.6_0.2_2.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/chameleon_split_0.6_0.2_2.npz",
+          "sha256": "86ad0d827bf4301dff830598fc0b70d0dd8689c5b4d72dab1d87a6c1970c4c6e",
+          "bytes": 1777
+        },
+        {
+          "path": "raw/chameleon/raw/chameleon_split_0.6_0.2_3.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/chameleon_split_0.6_0.2_3.npz",
+          "sha256": "37b3e994adf3afc55e16b617ed05af4e3ce308800755839084d77eced0528e9d",
+          "bytes": 1755
+        },
+        {
+          "path": "raw/chameleon/raw/chameleon_split_0.6_0.2_4.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/chameleon_split_0.6_0.2_4.npz",
+          "sha256": "f6b1d067b2b330132839d8b6120077bdc6cf759f7ce421f881a02e2953ec4596",
+          "bytes": 1778
+        },
+        {
+          "path": "raw/chameleon/raw/chameleon_split_0.6_0.2_5.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/chameleon_split_0.6_0.2_5.npz",
+          "sha256": "e7661834275c826692510cea0457b18b2c1ee38771f178d06e701b97541a1f6d",
+          "bytes": 1772
+        },
+        {
+          "path": "raw/chameleon/raw/chameleon_split_0.6_0.2_6.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/chameleon_split_0.6_0.2_6.npz",
+          "sha256": "16648d1197c1d3a2dec385346212c382030b0d5a8c997f4255aa2afa68a6b174",
+          "bytes": 1774
+        },
+        {
+          "path": "raw/chameleon/raw/chameleon_split_0.6_0.2_7.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/chameleon_split_0.6_0.2_7.npz",
+          "sha256": "61adcc53846becefecd466a5364dda23b983d387d1ac5d58c6e24d080c0fcba7",
+          "bytes": 1764
+        },
+        {
+          "path": "raw/chameleon/raw/chameleon_split_0.6_0.2_8.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/chameleon_split_0.6_0.2_8.npz",
+          "sha256": "7076ad5341a8218b1f5b6eccf9cfd15d28286ea11ef5c06eeee77af24ff2bf63",
+          "bytes": 1770
+        },
+        {
+          "path": "raw/chameleon/raw/chameleon_split_0.6_0.2_9.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/chameleon_split_0.6_0.2_9.npz",
+          "sha256": "743c4f813bf6130398a6511eb9ff07d2366c73bd6c7fddaf226a3f9e2917e0e7",
+          "bytes": 1773
+        }
+      ],
+      "versions": {
+        "torch": "2.8.0+cpu",
+        "numpy": "2.3.4",
+        "torch_geometric": "2.7.0"
+      }
+    },
+    {
+      "cache_version": 1,
+      "dataset": "squirrel",
+      "mode": "filtered",
+      "source_revision": "a431395582e929d88271309716bea4fe24ce6318",
+      "split_source": "Platonov et al. official NPZ masks",
+      "split_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "split_seed": null,
+      "graph_policy": "undirected_coalesced_without_self_loops",
+      "source_edge_policy": "upstream_NPZ_edges",
+      "feature_transform": "none",
+      "node_id_scope": "version_local; no raw-filtered mapping supplied",
+      "fingerprint": "334914d08037527cbb4f6a511fa9fa0841dcbc3ac446da86de25e3829a68cff3",
+      "summary": {
+        "num_nodes": 2223,
+        "num_features": 2089,
+        "num_classes": 5,
+        "num_edges_directed": 93996,
+        "num_edges_undirected": 46998,
+        "average_degree": 42.283400809716596,
+        "isolated_nodes": 0,
+        "class_counts": [
+          756,
+          516,
+          397,
+          321,
+          233
+        ],
+        "splits": [
+          {
+            "split_id": 0,
+            "train_nodes": 1053,
+            "train_class_counts": [
+              347,
+              248,
+              188,
+              163,
+              107
+            ],
+            "val_nodes": 718,
+            "val_class_counts": [
+              252,
+              166,
+              123,
+              97,
+              80
+            ],
+            "test_nodes": 452,
+            "test_class_counts": [
+              157,
+              102,
+              86,
+              61,
+              46
+            ]
+          },
+          {
+            "split_id": 1,
+            "train_nodes": 1080,
+            "train_class_counts": [
+              348,
+              254,
+              186,
+              176,
+              116
+            ],
+            "val_nodes": 700,
+            "val_class_counts": [
+              249,
+              155,
+              135,
+              92,
+              69
+            ],
+            "test_nodes": 443,
+            "test_class_counts": [
+              159,
+              107,
+              76,
+              53,
+              48
+            ]
+          },
+          {
+            "split_id": 2,
+            "train_nodes": 1047,
+            "train_class_counts": [
+              347,
+              261,
+              193,
+              142,
+              104
+            ],
+            "val_nodes": 726,
+            "val_class_counts": [
+              241,
+              162,
+              122,
+              116,
+              85
+            ],
+            "test_nodes": 450,
+            "test_class_counts": [
+              168,
+              93,
+              82,
+              63,
+              44
+            ]
+          },
+          {
+            "split_id": 3,
+            "train_nodes": 1060,
+            "train_class_counts": [
+              353,
+              265,
+              192,
+              138,
+              112
+            ],
+            "val_nodes": 713,
+            "val_class_counts": [
+              243,
+              152,
+              134,
+              115,
+              69
+            ],
+            "test_nodes": 450,
+            "test_class_counts": [
+              160,
+              99,
+              71,
+              68,
+              52
+            ]
+          },
+          {
+            "split_id": 4,
+            "train_nodes": 1055,
+            "train_class_counts": [
+              360,
+              247,
+              176,
+              150,
+              122
+            ],
+            "val_nodes": 719,
+            "val_class_counts": [
+              236,
+              165,
+              142,
+              106,
+              70
+            ],
+            "test_nodes": 449,
+            "test_class_counts": [
+              160,
+              104,
+              79,
+              65,
+              41
+            ]
+          },
+          {
+            "split_id": 5,
+            "train_nodes": 1077,
+            "train_class_counts": [
+              378,
+              253,
+              178,
+              159,
+              109
+            ],
+            "val_nodes": 691,
+            "val_class_counts": [
+              224,
+              157,
+              139,
+              94,
+              77
+            ],
+            "test_nodes": 455,
+            "test_class_counts": [
+              154,
+              106,
+              80,
+              68,
+              47
+            ]
+          },
+          {
+            "split_id": 6,
+            "train_nodes": 1085,
+            "train_class_counts": [
+              361,
+              262,
+              193,
+              160,
+              109
+            ],
+            "val_nodes": 692,
+            "val_class_counts": [
+              246,
+              148,
+              126,
+              102,
+              70
+            ],
+            "test_nodes": 446,
+            "test_class_counts": [
+              149,
+              106,
+              78,
+              59,
+              54
+            ]
+          },
+          {
+            "split_id": 7,
+            "train_nodes": 1051,
+            "train_class_counts": [
+              345,
+              254,
+              198,
+              132,
+              122
+            ],
+            "val_nodes": 739,
+            "val_class_counts": [
+              259,
+              168,
+              120,
+              118,
+              74
+            ],
+            "test_nodes": 433,
+            "test_class_counts": [
+              152,
+              94,
+              79,
+              71,
+              37
+            ]
+          },
+          {
+            "split_id": 8,
+            "train_nodes": 1049,
+            "train_class_counts": [
+              342,
+              266,
+              202,
+              134,
+              105
+            ],
+            "val_nodes": 691,
+            "val_class_counts": [
+              241,
+              152,
+              113,
+              113,
+              72
+            ],
+            "test_nodes": 483,
+            "test_class_counts": [
+              173,
+              98,
+              82,
+              74,
+              56
+            ]
+          },
+          {
+            "split_id": 9,
+            "train_nodes": 1074,
+            "train_class_counts": [
+              364,
+              240,
+              202,
+              161,
+              107
+            ],
+            "val_nodes": 733,
+            "val_class_counts": [
+              254,
+              179,
+              121,
+              95,
+              84
+            ],
+            "test_nodes": 416,
+            "test_class_counts": [
+              138,
+              97,
+              74,
+              65,
+              42
+            ]
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "raw/squirrel/filtered/squirrel_filtered.npz",
+          "url": "https://raw.githubusercontent.com/yandex-research/heterophilous-graphs/a431395582e929d88271309716bea4fe24ce6318/data/squirrel_filtered.npz",
+          "sha256": "f06370ffb3116c5de8b7a600005400b2293c025e0ce2f6916d8201a825505ac7",
+          "bytes": 208215
+        }
+      ],
+      "versions": {
+        "torch": "2.8.0+cpu",
+        "numpy": "2.3.4",
+        "torch_geometric": "2.7.0"
+      }
+    },
+    {
+      "cache_version": 1,
+      "dataset": "squirrel",
+      "mode": "raw",
+      "source_revision": "f1fc0d14b3b019c562737240d06ec83b07d16a8f",
+      "split_source": "Geom-GCN squirrel_split_0.6_0.2_{0..9}",
+      "split_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "split_seed": null,
+      "graph_policy": "undirected_coalesced_without_self_loops",
+      "source_edge_policy": "upstream_PyG_edges",
+      "feature_transform": "none",
+      "node_id_scope": "version_local; no raw-filtered mapping supplied",
+      "fingerprint": "54dd555590b9d502f71d778c42da9d3bf0a890011f1aeb26fb3d805d4dc3abe0",
+      "summary": {
+        "num_nodes": 5201,
+        "num_features": 2089,
+        "num_classes": 5,
+        "num_edges_directed": 396706,
+        "num_edges_undirected": 198353,
+        "average_degree": 76.27494712555279,
+        "isolated_nodes": 0,
+        "class_counts": [
+          1042,
+          1040,
+          1039,
+          1040,
+          1040
+        ],
+        "splits": [
+          {
+            "split_id": 0,
+            "train_nodes": 2496,
+            "train_class_counts": [
+              487,
+              494,
+              501,
+              514,
+              500
+            ],
+            "val_nodes": 1664,
+            "val_class_counts": [
+              342,
+              340,
+              323,
+              325,
+              334
+            ],
+            "test_nodes": 1041,
+            "test_class_counts": [
+              213,
+              206,
+              215,
+              201,
+              206
+            ]
+          },
+          {
+            "split_id": 1,
+            "train_nodes": 2496,
+            "train_class_counts": [
+              486,
+              515,
+              475,
+              516,
+              504
+            ],
+            "val_nodes": 1664,
+            "val_class_counts": [
+              339,
+              326,
+              361,
+              324,
+              314
+            ],
+            "test_nodes": 1041,
+            "test_class_counts": [
+              217,
+              199,
+              203,
+              200,
+              222
+            ]
+          },
+          {
+            "split_id": 2,
+            "train_nodes": 2496,
+            "train_class_counts": [
+              492,
+              510,
+              507,
+              485,
+              502
+            ],
+            "val_nodes": 1664,
+            "val_class_counts": [
+              319,
+              322,
+              329,
+              348,
+              346
+            ],
+            "test_nodes": 1041,
+            "test_class_counts": [
+              231,
+              208,
+              203,
+              207,
+              192
+            ]
+          },
+          {
+            "split_id": 3,
+            "train_nodes": 2496,
+            "train_class_counts": [
+              498,
+              517,
+              491,
+              488,
+              502
+            ],
+            "val_nodes": 1664,
+            "val_class_counts": [
+              335,
+              304,
+              356,
+              341,
+              328
+            ],
+            "test_nodes": 1041,
+            "test_class_counts": [
+              209,
+              219,
+              192,
+              211,
+              210
+            ]
+          },
+          {
+            "split_id": 4,
+            "train_nodes": 2496,
+            "train_class_counts": [
+              504,
+              495,
+              497,
+              510,
+              490
+            ],
+            "val_nodes": 1664,
+            "val_class_counts": [
+              321,
+              345,
+              340,
+              313,
+              345
+            ],
+            "test_nodes": 1041,
+            "test_class_counts": [
+              217,
+              200,
+              202,
+              217,
+              205
+            ]
+          },
+          {
+            "split_id": 5,
+            "train_nodes": 2496,
+            "train_class_counts": [
+              514,
+              496,
+              490,
+              510,
+              486
+            ],
+            "val_nodes": 1664,
+            "val_class_counts": [
+              301,
+              353,
+              340,
+              315,
+              355
+            ],
+            "test_nodes": 1041,
+            "test_class_counts": [
+              227,
+              191,
+              209,
+              215,
+              199
+            ]
+          },
+          {
+            "split_id": 6,
+            "train_nodes": 2496,
+            "train_class_counts": [
+              489,
+              491,
+              519,
+              519,
+              478
+            ],
+            "val_nodes": 1664,
+            "val_class_counts": [
+              336,
+              327,
+              325,
+              332,
+              344
+            ],
+            "test_nodes": 1041,
+            "test_class_counts": [
+              217,
+              222,
+              195,
+              189,
+              218
+            ]
+          },
+          {
+            "split_id": 7,
+            "train_nodes": 2496,
+            "train_class_counts": [
+              492,
+              503,
+              498,
+              482,
+              521
+            ],
+            "val_nodes": 1664,
+            "val_class_counts": [
+              337,
+              325,
+              340,
+              342,
+              320
+            ],
+            "test_nodes": 1041,
+            "test_class_counts": [
+              213,
+              212,
+              201,
+              216,
+              199
+            ]
+          },
+          {
+            "split_id": 8,
+            "train_nodes": 2496,
+            "train_class_counts": [
+              476,
+              504,
+              518,
+              492,
+              506
+            ],
+            "val_nodes": 1664,
+            "val_class_counts": [
+              326,
+              346,
+              318,
+              344,
+              330
+            ],
+            "test_nodes": 1041,
+            "test_class_counts": [
+              240,
+              190,
+              203,
+              204,
+              204
+            ]
+          },
+          {
+            "split_id": 9,
+            "train_nodes": 2496,
+            "train_class_counts": [
+              507,
+              499,
+              509,
+              497,
+              484
+            ],
+            "val_nodes": 1664,
+            "val_class_counts": [
+              351,
+              337,
+              319,
+              311,
+              346
+            ],
+            "test_nodes": 1041,
+            "test_class_counts": [
+              184,
+              204,
+              211,
+              232,
+              210
+            ]
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "raw/squirrel/raw/out1_node_feature_label.txt",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/new_data/squirrel/out1_node_feature_label.txt",
+          "sha256": "ac15ab755983717a187992eef8ce2017aae33ea444fd655b07e4662690dcc03a",
+          "bytes": 21765097
+        },
+        {
+          "path": "raw/squirrel/raw/out1_graph_edges.txt",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/new_data/squirrel/out1_graph_edges.txt",
+          "sha256": "453d8e96754d68e2ab0a7ebb56f93506b59531d95abaec7a2b46fe1eae7c39cd",
+          "bytes": 2115917
+        },
+        {
+          "path": "raw/squirrel/raw/squirrel_split_0.6_0.2_0.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/squirrel_split_0.6_0.2_0.npz",
+          "sha256": "f112b88d3354e86d164d4d915b6a1f695c10f0e01e3e6b9893fc7b09bb93191d",
+          "bytes": 3134
+        },
+        {
+          "path": "raw/squirrel/raw/squirrel_split_0.6_0.2_1.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/squirrel_split_0.6_0.2_1.npz",
+          "sha256": "2486c687c8befb55930a6237f76f1d86ce2ba345782eda6157f4e752d05f304f",
+          "bytes": 3130
+        },
+        {
+          "path": "raw/squirrel/raw/squirrel_split_0.6_0.2_2.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/squirrel_split_0.6_0.2_2.npz",
+          "sha256": "d62ff83862ad96022d3400dfc9b7ca405834ca62767319d97c36b3f02db978c0",
+          "bytes": 3121
+        },
+        {
+          "path": "raw/squirrel/raw/squirrel_split_0.6_0.2_3.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/squirrel_split_0.6_0.2_3.npz",
+          "sha256": "af3d90e0b2718ac7417e10e8b5b382443667412e846cabc3cc4e4a592f4cedae",
+          "bytes": 3126
+        },
+        {
+          "path": "raw/squirrel/raw/squirrel_split_0.6_0.2_4.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/squirrel_split_0.6_0.2_4.npz",
+          "sha256": "fbe848298bb72b88db0704050cf216e2a93c916540d577906f3e644b679a6a2c",
+          "bytes": 3124
+        },
+        {
+          "path": "raw/squirrel/raw/squirrel_split_0.6_0.2_5.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/squirrel_split_0.6_0.2_5.npz",
+          "sha256": "cd04fab46a181151ddd97ce93c65fe79558fb79ffa230b62f488ebfaf5fdcd75",
+          "bytes": 3111
+        },
+        {
+          "path": "raw/squirrel/raw/squirrel_split_0.6_0.2_6.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/squirrel_split_0.6_0.2_6.npz",
+          "sha256": "b9189f7903ca7556a025c54dd5be6c00ec5952d4299e71630bc9876157676412",
+          "bytes": 3118
+        },
+        {
+          "path": "raw/squirrel/raw/squirrel_split_0.6_0.2_7.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/squirrel_split_0.6_0.2_7.npz",
+          "sha256": "ea7fb3ca5d5aa45b917b99fb7d64d4e87322b2b5303a0156c547aa3f1a6c8941",
+          "bytes": 3138
+        },
+        {
+          "path": "raw/squirrel/raw/squirrel_split_0.6_0.2_8.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/squirrel_split_0.6_0.2_8.npz",
+          "sha256": "b43faa190ca6dd4885a39dfc2a93d59f56f5174f3567bdbc49b18dd9cd9b7fb4",
+          "bytes": 3132
+        },
+        {
+          "path": "raw/squirrel/raw/squirrel_split_0.6_0.2_9.npz",
+          "url": "https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/f1fc0d14b3b019c562737240d06ec83b07d16a8f/splits/squirrel_split_0.6_0.2_9.npz",
+          "sha256": "529ade4b86fd191908a96011f25c454653083674b6d4f090b3fdd27af2d14f62",
+          "bytes": 3146
+        }
+      ],
+      "versions": {
+        "torch": "2.8.0+cpu",
+        "numpy": "2.3.4",
+        "torch_geometric": "2.7.0"
+      }
+    }
+  ],
+  "limitations": [
+    "Actor filtered is not configured: only five conditions are supported.",
+    "Raw and filtered splits are not matched experimental pairs.",
+    "node_id is local to a dataset version, not a raw-filtered mapping."
+  ]
+}
