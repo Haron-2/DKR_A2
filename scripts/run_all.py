@@ -186,6 +186,16 @@ def main(argv: list[str] | None = None) -> int:
         if code != 0:
             return code
         code = run_step(
+            "Markdown tables",
+            [
+                "-m", "scripts.export_tables",
+                "--analysis", str(analysis_dir),
+                "--output-dir", str(PROJECT_ROOT / "reports" / ("tables_smoke" if args.smoke else "tables")),
+            ],
+        )
+        if code != 0:
+            return code
+        code = run_step(
             "Figures",
             [
                 "-m", "scripts.make_figures",
