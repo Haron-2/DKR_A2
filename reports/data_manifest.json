@@ -2,11 +2,13 @@
   "schema_version": 1,
   "datasets": [
     {
-      "cache_version": 1,
+      "cache_version": 3,
       "dataset": "actor",
-      "mode": "raw",
-      "source_revision": "f1fc0d14b3b019c562737240d06ec83b07d16a8f",
-      "split_source": "Geom-GCN film_split_0.6_0.2_{0..9}",
+      "mode": "filtered",
+      "source_revision": "a431395582e929d88271309716bea4fe24ce6318",
+      "split_source": "custom stratified 50/25/25 splits (seed 20230222) on the unchanged Platonov actor graph",
+      "split_seed": 20230222,
+      "duplicate_removal": "none (custom actor alternative splits; no upstream filtered file)",
       "split_ids": [
         0,
         1,
@@ -19,7 +21,333 @@
         8,
         9
       ],
+      "graph_policy": "undirected_coalesced_without_self_loops",
+      "source_edge_policy": "upstream_NPZ_edges",
+      "feature_transform": "none",
+      "node_id_scope": "version_local; no raw-filtered mapping supplied",
+      "fingerprint": "6a3ac6f6f94a746b418a73602bc4af26509f9e5b4235c60a0f7bc86d9231210f",
+      "summary": {
+        "num_nodes": 7600,
+        "num_features": 932,
+        "num_classes": 5,
+        "num_edges_directed": 53318,
+        "num_edges_undirected": 26659,
+        "average_degree": 7.015526315789474,
+        "isolated_nodes": 0,
+        "class_counts": [
+          853,
+          1337,
+          1630,
+          1815,
+          1965
+        ],
+        "splits": [
+          {
+            "split_id": 0,
+            "train_nodes": 3799,
+            "train_class_counts": [
+              426,
+              668,
+              815,
+              908,
+              982
+            ],
+            "val_nodes": 1900,
+            "val_class_counts": [
+              213,
+              334,
+              408,
+              454,
+              491
+            ],
+            "test_nodes": 1901,
+            "test_class_counts": [
+              214,
+              335,
+              407,
+              453,
+              492
+            ]
+          },
+          {
+            "split_id": 1,
+            "train_nodes": 3799,
+            "train_class_counts": [
+              426,
+              668,
+              815,
+              908,
+              982
+            ],
+            "val_nodes": 1900,
+            "val_class_counts": [
+              213,
+              334,
+              408,
+              454,
+              491
+            ],
+            "test_nodes": 1901,
+            "test_class_counts": [
+              214,
+              335,
+              407,
+              453,
+              492
+            ]
+          },
+          {
+            "split_id": 2,
+            "train_nodes": 3799,
+            "train_class_counts": [
+              426,
+              668,
+              815,
+              908,
+              982
+            ],
+            "val_nodes": 1900,
+            "val_class_counts": [
+              213,
+              334,
+              408,
+              454,
+              491
+            ],
+            "test_nodes": 1901,
+            "test_class_counts": [
+              214,
+              335,
+              407,
+              453,
+              492
+            ]
+          },
+          {
+            "split_id": 3,
+            "train_nodes": 3799,
+            "train_class_counts": [
+              426,
+              668,
+              815,
+              908,
+              982
+            ],
+            "val_nodes": 1900,
+            "val_class_counts": [
+              213,
+              334,
+              408,
+              454,
+              491
+            ],
+            "test_nodes": 1901,
+            "test_class_counts": [
+              214,
+              335,
+              407,
+              453,
+              492
+            ]
+          },
+          {
+            "split_id": 4,
+            "train_nodes": 3799,
+            "train_class_counts": [
+              426,
+              668,
+              815,
+              908,
+              982
+            ],
+            "val_nodes": 1900,
+            "val_class_counts": [
+              213,
+              334,
+              408,
+              454,
+              491
+            ],
+            "test_nodes": 1901,
+            "test_class_counts": [
+              214,
+              335,
+              407,
+              453,
+              492
+            ]
+          },
+          {
+            "split_id": 5,
+            "train_nodes": 3799,
+            "train_class_counts": [
+              426,
+              668,
+              815,
+              908,
+              982
+            ],
+            "val_nodes": 1900,
+            "val_class_counts": [
+              213,
+              334,
+              408,
+              454,
+              491
+            ],
+            "test_nodes": 1901,
+            "test_class_counts": [
+              214,
+              335,
+              407,
+              453,
+              492
+            ]
+          },
+          {
+            "split_id": 6,
+            "train_nodes": 3799,
+            "train_class_counts": [
+              426,
+              668,
+              815,
+              908,
+              982
+            ],
+            "val_nodes": 1900,
+            "val_class_counts": [
+              213,
+              334,
+              408,
+              454,
+              491
+            ],
+            "test_nodes": 1901,
+            "test_class_counts": [
+              214,
+              335,
+              407,
+              453,
+              492
+            ]
+          },
+          {
+            "split_id": 7,
+            "train_nodes": 3799,
+            "train_class_counts": [
+              426,
+              668,
+              815,
+              908,
+              982
+            ],
+            "val_nodes": 1900,
+            "val_class_counts": [
+              213,
+              334,
+              408,
+              454,
+              491
+            ],
+            "test_nodes": 1901,
+            "test_class_counts": [
+              214,
+              335,
+              407,
+              453,
+              492
+            ]
+          },
+          {
+            "split_id": 8,
+            "train_nodes": 3799,
+            "train_class_counts": [
+              426,
+              668,
+              815,
+              908,
+              982
+            ],
+            "val_nodes": 1900,
+            "val_class_counts": [
+              213,
+              334,
+              408,
+              454,
+              491
+            ],
+            "test_nodes": 1901,
+            "test_class_counts": [
+              214,
+              335,
+              407,
+              453,
+              492
+            ]
+          },
+          {
+            "split_id": 9,
+            "train_nodes": 3799,
+            "train_class_counts": [
+              426,
+              668,
+              815,
+              908,
+              982
+            ],
+            "val_nodes": 1900,
+            "val_class_counts": [
+              213,
+              334,
+              408,
+              454,
+              491
+            ],
+            "test_nodes": 1901,
+            "test_class_counts": [
+              214,
+              335,
+              407,
+              453,
+              492
+            ]
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "raw/actor/filtered/actor.npz",
+          "url": "https://raw.githubusercontent.com/yandex-research/heterophilous-graphs/a431395582e929d88271309716bea4fe24ce6318/data/actor.npz",
+          "sha256": "c350eef06b2c2a9bf8218be2b57cac6d4003d0922eb597a039e9123f75817816",
+          "bytes": 252956
+        }
+      ],
+      "versions": {
+        "torch": "2.8.0+cpu",
+        "numpy": "2.3.4",
+        "torch_geometric": "2.7.0"
+      }
+    },
+    {
+      "cache_version": 3,
+      "dataset": "actor",
+      "mode": "raw",
+      "source_revision": "f1fc0d14b3b019c562737240d06ec83b07d16a8f",
+      "split_source": "Geom-GCN film_split_0.6_0.2_{0..9}",
       "split_seed": null,
+      "duplicate_removal": "none (original benchmark data)",
+      "split_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
       "graph_policy": "undirected_coalesced_without_self_loops",
       "source_edge_policy": "upstream_PyG_edges",
       "feature_transform": "none",
@@ -394,11 +722,13 @@
       }
     },
     {
-      "cache_version": 1,
+      "cache_version": 3,
       "dataset": "chameleon",
       "mode": "filtered",
       "source_revision": "a431395582e929d88271309716bea4fe24ce6318",
-      "split_source": "Platonov et al. official NPZ masks",
+      "split_source": "Platonov et al. official chameleon_filtered.npz masks",
+      "split_seed": null,
+      "duplicate_removal": "upstream Platonov et al. duplicate-node removal",
       "split_ids": [
         0,
         1,
@@ -411,7 +741,6 @@
         8,
         9
       ],
-      "split_seed": null,
       "graph_policy": "undirected_coalesced_without_self_loops",
       "source_edge_policy": "upstream_NPZ_edges",
       "feature_transform": "none",
@@ -720,11 +1049,13 @@
       }
     },
     {
-      "cache_version": 1,
+      "cache_version": 3,
       "dataset": "chameleon",
       "mode": "raw",
       "source_revision": "f1fc0d14b3b019c562737240d06ec83b07d16a8f",
       "split_source": "Geom-GCN chameleon_split_0.6_0.2_{0..9}",
+      "split_seed": null,
+      "duplicate_removal": "none (original benchmark data)",
       "split_ids": [
         0,
         1,
@@ -737,7 +1068,6 @@
         8,
         9
       ],
-      "split_seed": null,
       "graph_policy": "undirected_coalesced_without_self_loops",
       "source_edge_policy": "upstream_PyG_edges",
       "feature_transform": "none",
@@ -1112,11 +1442,13 @@
       }
     },
     {
-      "cache_version": 1,
+      "cache_version": 3,
       "dataset": "squirrel",
       "mode": "filtered",
       "source_revision": "a431395582e929d88271309716bea4fe24ce6318",
-      "split_source": "Platonov et al. official NPZ masks",
+      "split_source": "Platonov et al. official squirrel_filtered.npz masks",
+      "split_seed": null,
+      "duplicate_removal": "upstream Platonov et al. duplicate-node removal",
       "split_ids": [
         0,
         1,
@@ -1129,7 +1461,6 @@
         8,
         9
       ],
-      "split_seed": null,
       "graph_policy": "undirected_coalesced_without_self_loops",
       "source_edge_policy": "upstream_NPZ_edges",
       "feature_transform": "none",
@@ -1438,11 +1769,13 @@
       }
     },
     {
-      "cache_version": 1,
+      "cache_version": 3,
       "dataset": "squirrel",
       "mode": "raw",
       "source_revision": "f1fc0d14b3b019c562737240d06ec83b07d16a8f",
       "split_source": "Geom-GCN squirrel_split_0.6_0.2_{0..9}",
+      "split_seed": null,
+      "duplicate_removal": "none (original benchmark data)",
       "split_ids": [
         0,
         1,
@@ -1455,7 +1788,6 @@
         8,
         9
       ],
-      "split_seed": null,
       "graph_policy": "undirected_coalesced_without_self_loops",
       "source_edge_policy": "upstream_PyG_edges",
       "feature_transform": "none",
@@ -1831,8 +2163,8 @@
     }
   ],
   "limitations": [
-    "Actor filtered is not configured: only five conditions are supported.",
-    "Raw and filtered splits are not matched experimental pairs.",
+    "Actor filtered uses the Platonov et al. alternative splits only; no official duplicate-removed actor dataset exists.",
+    "Raw and filtered splits are not matched experimental pairs except for Actor, where the node population is identical but the masks differ.",
     "node_id is local to a dataset version, not a raw-filtered mapping."
   ]
 }

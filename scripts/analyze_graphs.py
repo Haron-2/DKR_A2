@@ -52,7 +52,10 @@ def main() -> None:
         if args.dataset in ("all", name) and args.mode in ("all", mode)
     ]
     if not conditions:
-        parser.error("Actor has no official filtered condition. Use --dataset actor --mode raw.")
+        parser.error(
+            f"No supported condition matches --dataset {args.dataset} "
+            f"--mode {args.mode}."
+        )
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     torch.set_num_threads(4)
