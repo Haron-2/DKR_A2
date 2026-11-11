@@ -506,9 +506,13 @@ parameters (150 149 / 135 045 on Chameleon / Squirrel).
 *Paired differences against the full H2GCN on matching splits; Holm correction over
 the eight tests.*
 
-In macro-F1 the picture is the same: removing the one-hop branch costs −11.97 pp on
-raw Chameleon (Holm p < 0.0001) and −6.01 pp on raw Squirrel (Holm p = 0.0004),
-while no two-hop comparison is significant (−0.71 to +1.35 pp).
+In macro-F1 the picture is the same. Removing the one-hop branch costs −11.97 pp on
+raw Chameleon (Holm p < 0.0001) and −6.01 pp on raw Squirrel (Holm p = 0.0004), and
+−2.59 pp on Chameleon filtered (Holm p = 0.118) but *gains* +0.68 pp on Squirrel
+filtered (n.s.). Removing the two-hop branch changes macro-F1 by +0.40 pp (Chameleon
+filtered), −0.71 pp (Chameleon raw), −0.88 pp (Squirrel filtered) and +1.35 pp
+(Squirrel raw), none of which is significant. So the one-hop branch carries the
+macro-F1 signal on raw data, and the two-hop branch is again undetectable.
 
 ![H2GCN ablations](figures/ablation_comparison.png)
 
