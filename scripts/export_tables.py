@@ -220,6 +220,33 @@ def main(argv: list[str] | None = None) -> int:
                     ],
                 ),
             )
+    per_class_path = analysis / "per_class_summary.csv"
+    if per_class_path.is_file():
+        with per_class_path.open(encoding="utf-8") as handle:
+            per_class_rows = list(csv.DictReader(handle))
+        for dataset, mode in (("actor", "raw"), ("squirrel", "filtered")):
+            subset = [
+                row
+                for row in per_class_rows
+                if row["dataset"] == dataset and row["mode"] == mode
+            ]
+            if not subset:
+                continue
+            subset.sort(key=lambda row: (row["model"], int(row["class"])))
+            write(
+                output / f"per_class_{dataset}_{mode}.md",
+                f"Per-class test metrics, {dataset} {mode} (mean over ten splits)",
+                markdown_table(subset, [
+                    ("model", "model"),
+                    ("class", "class"),
+                    ("mean_f1", "mean F1"),
+                    ("std_f1", "SD F1"),
+                    ("mean_recall", "mean recall"),
+                    ("mean_precision", "mean precision"),
+                    ("mean_predicted_share", "mean predicted share"),
+                    ("mean_support", "mean support"),
+                ]),
+            )
     return 0
 
 

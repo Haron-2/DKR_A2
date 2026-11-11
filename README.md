@@ -116,10 +116,11 @@ This downloads the pinned Geom-GCN and Platonov et al. files into `datasets/`
 .venv\Scripts\python.exe -m pytest tests -q
 ```
 
-63 tests cover the model interfaces, H2GCN adjacency construction, dataset and
-mask validation, homophily metrics on hand-computed graphs, duplicate and leakage
-detection, training-mask isolation, early-stopping restoration, result
-serialization, resumability, embeddings and figure generation.
+64 tests cover the model interfaces, H2GCN adjacency construction, dataset and
+mask validation, homophily metrics on hand-computed graphs, duplicate / feature
+overlap detection (including the dataset label written by the audit), training-mask
+isolation, early-stopping restoration, result serialization, resumability,
+embeddings and figure generation.
 
 ## 10. Smoke experiment
 
@@ -137,9 +138,10 @@ Runs the whole pipeline on `chameleon/raw`, split 0, 15 epochs, into
 ```
 
 This orchestrates, in order: dataset preparation, graph statistics, the duplicate
-and leakage audit, the 240 primary runs, the 80 ablation runs, the statistical
-analysis, the Markdown tables and all figures, followed by an artifact/complete-
-ness check. Every step is a separate process; re-running the command resumes
+and feature-overlap audit, the 240 primary runs, the 80 ablation runs, the
+statistical analysis, the per-class diagnostics (inference only, from the stored
+checkpoints), the Markdown tables and all figures, followed by an artifact /
+completeness check. Every step is a separate process; re-running the command resumes
 skipping completed runs.
 
 Individual steps:
@@ -167,15 +169,21 @@ analysis.
 ```powershell
 .venv\Scripts\python.exe -m scripts.audit_duplicates --offline
 .venv\Scripts\python.exe -m scripts.analyze_results
+.venv\Scripts\python.exe -m scripts.evaluate_predictions
 .venv\Scripts\python.exe -m scripts.export_tables
 .venv\Scripts\python.exe -m scripts.make_figures
 ```
 
 * `audit_duplicates` writes `results/analysis/duplicate_audit.json` (and `.csv`
-  with one row per split).
+  with one row per split). It reports train-test **feature overlap**, not a direct
+  measurement of label transfer; the JSON states this explicitly.
 * `analyze_results` writes `results/analysis/summary.json` plus per-metric CSV
   tables (aggregates, Structural Delta, paired tests, raw-vs-filtered).
-* `export_tables` renders the Markdown tables in `reports/tables/`.
+* `evaluate_predictions` reloads every stored best checkpoint in inference mode (no
+  retraining) and writes `per_class_metrics.csv`, `per_class_summary.csv` and
+  `confusion_matrices.json`; the recomputed accuracies reproduce the recorded ones.
+* `export_tables` renders the Markdown tables in `reports/tables/` (including
+  per-class tables for Actor raw and Squirrel filtered).
 * `make_figures` writes the PNG figures in `reports/figures/` (and the t-SNE
   coordinates as CSV next to them).
 
@@ -203,7 +211,10 @@ of the pinned Python environment; see the report's limitations section.
 | `results/run_status.json`, `results/ablation_status.json` | completeness reports | yes |
 | `results/analysis/summary.json` | all aggregated tables and tests | yes |
 | `results/analysis/*.csv` | aggregates, deltas, paired tests, raw-vs-filtered | yes |
-| `results/analysis/duplicate_audit.json` / `.csv` | duplicate and leakage audit | yes |
+| `results/analysis/duplicate_audit.json` / `.csv` | duplicate groups and train-test feature overlap | yes |
+| `results/analysis/per_class_metrics.csv` | per-run, per-class precision/recall/F1 | yes |
+| `results/analysis/per_class_summary.csv` | per-class metrics averaged over ten splits | yes |
+| `results/analysis/confusion_matrices.json` | test-mask confusion matrix per run | yes |
 | `results/analysis/embeddings_index.json` | exported embedding inventory | yes |
 | `results/logs/**` | per-epoch train/validation loss per run | no (regenerable) |
 | `results/checkpoints/**` | best validation checkpoint per run | no (regenerable, large) |

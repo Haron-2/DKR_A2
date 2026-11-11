@@ -186,6 +186,16 @@ def main(argv: list[str] | None = None) -> int:
         if code != 0:
             return code
         code = run_step(
+            "Per-class diagnostics (inference only)",
+            [
+                "-m", "scripts.evaluate_predictions",
+                "--results", str(results_dir / "results.json"),
+                "--output-dir", str(analysis_dir),
+            ],
+        )
+        if code != 0:
+            return code
+        code = run_step(
             "Markdown tables",
             [
                 "-m", "scripts.export_tables",
