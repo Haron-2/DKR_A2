@@ -11,6 +11,7 @@ results/checkpoints/
 results/logs/
 results/embeddings/
 reports/figures_smoke/
+reports/tables_smoke/
 *.log
 *.err
 
