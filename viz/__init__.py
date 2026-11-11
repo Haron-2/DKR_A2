@@ -11,12 +11,13 @@ from viz.plots import (
     plot_structural_delta,
     plot_training_convergence,
 )
-from viz.tsne_plotter import compute_tsne, load_embedding, plot_tsne
+from viz.tsne_plotter import compute_tsne, embedding_quality, load_embedding, plot_tsne
 
 __all__ = [
     "MODEL_COLORS",
     "MODEL_ORDER",
     "compute_tsne",
+    "embedding_quality",
     "load_embedding",
     "plot_ablation_comparison",
     "plot_duplicate_leakage",

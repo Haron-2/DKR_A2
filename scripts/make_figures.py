@@ -16,7 +16,7 @@ from viz.plots import (
     plot_structural_delta,
     plot_training_convergence,
 )
-from viz.tsne_plotter import plot_tsne, load_embedding
+from viz.tsne_plotter import embedding_quality, load_embedding, plot_tsne
 from engine.runner import atomic_write_json
 
 
@@ -107,10 +107,14 @@ def main(argv: list[str] | None = None) -> int:
             for row in summary["metrics"]["accuracy"]["aggregates"]
             if row["model"] == "H2GCN" and row["dataset"] in ("chameleon", "squirrel")
         ]
+        variant_rows = [
+            {**row, "model": f"H2GCN[{row['variant']}]"}
+            for row in ablations["aggregates"]["accuracy"]
+        ]
         created.append(
             plot_ablation_comparison(
                 full_rows,
-                ablations["aggregates"]["accuracy"],
+                variant_rows,
                 "accuracy",
                 output_dir / "ablation_comparison.png",
             )
@@ -147,6 +151,7 @@ def main(argv: list[str] | None = None) -> int:
                     "embedding_dim": int(payload["embedding_dim"]),
                     "accuracy": payload["accuracy"],
                     "macro_f1": payload["macro_f1"],
+                    **embedding_quality(payload["embedding"], payload["y"]),
                 }
             )
         if index:

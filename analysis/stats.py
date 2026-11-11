@@ -26,30 +26,49 @@ def load_records(path: str | Path) -> list[dict]:
 
 
 def _values(
-    records: list[dict], metric: str, key: tuple[str, str, str]
+    records: list[dict], metric: str, key: tuple[str, str, str, str]
 ) -> list[float]:
     return sorted(
         record[metric]
         for record in records
         if record["status"] == "completed"
-        and (record["model"], record["dataset"], record["mode"]) == key
+        and (
+            record["model"],
+            record["dataset"],
+            record["mode"],
+            record.get("variant", "full"),
+        )
+        == key
     )
 
 
 def aggregate(records: list[dict], metric: str = "accuracy") -> list[dict]:
-    """Mean and sample standard deviation per model/dataset/mode."""
+    """Mean and sample standard deviation per model/dataset/mode/variant."""
     keys = sorted(
-        {(record["model"], record["dataset"], record["mode"]) for record in records}
+        {
+            (
+                record["model"],
+                record["dataset"],
+                record["mode"],
+                record.get("variant", "full"),
+            )
+            for record in records
+        }
     )
     rows = []
-    for model, dataset, mode in keys:
-        values = _values(records, metric, (model, dataset, mode))
+    for model, dataset, mode, variant in keys:
+        values = _values(records, metric, (model, dataset, mode, variant))
         attempted = len(
             [
                 record
                 for record in records
-                if (record["model"], record["dataset"], record["mode"])
-                == (model, dataset, mode)
+                if (
+                    record["model"],
+                    record["dataset"],
+                    record["mode"],
+                    record.get("variant", "full"),
+                )
+                == (model, dataset, mode, variant)
             ]
         )
         rows.append(
@@ -57,6 +76,7 @@ def aggregate(records: list[dict], metric: str = "accuracy") -> list[dict]:
                 "model": model,
                 "dataset": dataset,
                 "mode": mode,
+                "variant": variant,
                 "metric": metric,
                 "n_completed": len(values),
                 "n_attempted": attempted,
@@ -73,6 +93,7 @@ def aggregate(records: list[dict], metric: str = "accuracy") -> list[dict]:
             MODEL_ORDER.index(row["model"])
             if row["model"] in MODEL_ORDER
             else len(MODEL_ORDER),
+            str(row.get("variant", "full")),
         )
     )
     return rows

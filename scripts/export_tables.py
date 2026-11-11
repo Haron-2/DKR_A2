@@ -165,4 +165,63 @@ def main(argv: list[str] | None = None) -> int:
             float_digits=2,
         ),
     )
+
+    ablations = summary.get("ablations", {})
+    if ablations.get("variants"):
+        for metric in METRICS:
+            aggregates = mean_std(
+                [dict(row) for row in ablations["aggregates"][metric]], "mean_sd"
+            )
+            write(
+                output / f"ablation_results_{metric}.md",
+                f"H2GCN ablations, {metric} (mean ± SD over ten splits)",
+                markdown_table(
+                    aggregates,
+                    [
+                        ("dataset", "dataset"),
+                        ("mode", "condition"),
+                        ("variant", "variant"),
+                        ("mean_sd", "mean ± SD"),
+                        ("n_completed", "n completed"),
+                    ],
+                ),
+            )
+            rows = ablations["paired"].get(metric, [])
+            write(
+                output / f"ablation_paired_{metric}.md",
+                f"H2GCN ablations versus full H2GCN, {metric} (paired, Holm corrected)",
+                markdown_table(
+                    [
+                        {
+                            **row,
+                            "ci": f"[{row['ci95_low']:+.4f}, {row['ci95_high']:+.4f}]",
+                            "significance": (
+                                "significant"
+                                if row["significant_holm_0.05"]
+                                else "not significant"
+                            ),
+                        }
+                        for row in rows
+                    ],
+                    [
+                        ("dataset", "dataset"),
+                        ("mode", "condition"),
+                        ("comparison", "variant"),
+                        ("n_pairs", "pairs"),
+                        ("mean_difference", "mean Δ"),
+                        ("std_difference", "SD Δ"),
+                        ("ci", "95% CI"),
+                        ("t_statistic", "t"),
+                        ("p_value_ttest", "p (raw)"),
+                        ("p_value_holm", "p (Holm)"),
+                        ("p_value_wilcoxon", "p (Wilcoxon)"),
+                        ("cohen_dz", "d_z"),
+                        ("significance", "verdict"),
+                    ],
+                ),
+            )
     return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

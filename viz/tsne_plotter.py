@@ -50,6 +50,56 @@ def compute_tsne(
     return model.fit_transform(scaled)
 
 
+def embedding_quality(
+    embedding: torch.Tensor | np.ndarray,
+    labels: torch.Tensor | np.ndarray,
+    *,
+    k: int = 10,
+    random_state: int = 42,
+) -> dict:
+    """Quantify class separation of an embedding (kNN agreement and silhouette).
+
+    Complements the qualitative t-SNE panels: the kNN label agreement is the
+    fraction of the k nearest neighbours (in the standardised embedding space)
+    that share the label of the query node; the silhouette is computed on a
+    subsample of at most 2 000 nodes.
+    """
+    from sklearn.metrics import silhouette_score
+    from sklearn.neighbors import NearestNeighbors
+
+    features = (
+        embedding.detach().cpu().numpy()
+        if isinstance(embedding, torch.Tensor)
+        else np.asarray(embedding)
+    )
+    targets = (
+        labels.detach().cpu().numpy()
+        if isinstance(labels, torch.Tensor)
+        else np.asarray(labels)
+    )
+    scaled = StandardScaler().fit_transform(features)
+    n_neighbors = int(min(k + 1, scaled.shape[0]))
+    neighbours = NearestNeighbors(n_neighbors=n_neighbors).fit(scaled)
+    _, indices = neighbours.kneighbors(scaled)
+    knn_agreement = float(
+        np.mean(targets[indices[:, 1:]] == targets[:, None])
+    )
+    if np.unique(targets).size > 1 and scaled.shape[0] > n_neighbors:
+        sample_size = int(min(2000, scaled.shape[0]))
+        silhouette = float(
+            silhouette_score(
+                scaled, targets, sample_size=sample_size, random_state=random_state
+            )
+        )
+    else:
+        silhouette = float("nan")
+    return {
+        "knn_label_agreement": knn_agreement,
+        "silhouette": silhouette,
+        "k": int(n_neighbors - 1),
+    }
+
+
 def plot_tsne(
     embeddings_dir: str | Path,
     output_path: str | Path,
