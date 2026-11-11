@@ -1,0 +1,57 @@
+{
+  "experiment": "primary",
+  "expected_runs": 240,
+  "completed_runs": 240,
+  "failed_runs": 0,
+  "missing_runs": 0,
+  "complete": true,
+  "failed_run_ids": [],
+  "missing_run_ids": [],
+  "config": {
+    "datasets": [
+      "chameleon",
+      "squirrel",
+      "actor"
+    ],
+    "modes": [
+      "raw",
+      "filtered"
+    ],
+    "models": [
+      "MLP",
+      "GCN",
+      "GAT",
+      "H2GCN"
+    ],
+    "splits": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "training": {
+      "lr": 0.01,
+      "weight_decay": 0.0005,
+      "dropout": 0.5,
+      "patience": 50,
+      "min_delta": 0.0001,
+      "max_epochs": 1000,
+      "device": "cpu"
+    },
+    "model_config": {
+      "hidden_dim": 64,
+      "dropout": 0.5,
+      "gat_heads": 8,
+      "h2gcn_hidden_dim": 64,
+      "h2gcn_normalization": "row",
+      "h2gcn_use_one_hop": true,
+      "h2gcn_use_two_hop": true
+    }
+  }
+}

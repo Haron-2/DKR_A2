@@ -1,0 +1,767 @@
+{
+  "method": {
+    "duplicate_definition": "||x_i - x_j||_2 < tolerance",
+    "tolerance": 1e-06,
+    "grouping": "exact unique rows followed by a KD-tree radius query",
+    "leakage_definition": "test node whose duplicate group contains at least one training node",
+    "label_agreement": "fraction of duplicate nodes in groups whose labels are identical"
+  },
+  "conditions": [
+    {
+      "dataset": null,
+      "mode": "raw",
+      "duplicates": {
+        "tolerance": 1e-06,
+        "grouping_method": "exact_integer_grid",
+        "num_nodes": 2277,
+        "num_unique_feature_vectors": 1950,
+        "duplicate_groups": 48,
+        "duplicate_pairs": 27264,
+        "duplicate_vertices": 375,
+        "duplicate_percentage": 16.469038208168644,
+        "largest_group": 233,
+        "groups_with_identical_labels": 28,
+        "groups_with_conflicting_labels": 20,
+        "label_agreement_percentage": 19.733333333333334
+      },
+      "leakage": [
+        {
+          "split": 0,
+          "num_train_nodes": 1092,
+          "num_test_nodes": 456,
+          "leaking_test_nodes": 64,
+          "leakage_percentage": 14.035087719298245,
+          "crossing_groups": 13,
+          "crossing_groups_with_identical_labels": 8,
+          "crossing_label_agreement_percentage": 61.53846153846154
+        },
+        {
+          "split": 1,
+          "num_train_nodes": 1092,
+          "num_test_nodes": 456,
+          "leaking_test_nodes": 63,
+          "leakage_percentage": 13.81578947368421,
+          "crossing_groups": 15,
+          "crossing_groups_with_identical_labels": 8,
+          "crossing_label_agreement_percentage": 53.333333333333336
+        },
+        {
+          "split": 2,
+          "num_train_nodes": 1092,
+          "num_test_nodes": 456,
+          "leaking_test_nodes": 59,
+          "leakage_percentage": 12.93859649122807,
+          "crossing_groups": 15,
+          "crossing_groups_with_identical_labels": 7,
+          "crossing_label_agreement_percentage": 46.666666666666664
+        },
+        {
+          "split": 3,
+          "num_train_nodes": 1092,
+          "num_test_nodes": 456,
+          "leaking_test_nodes": 74,
+          "leakage_percentage": 16.228070175438596,
+          "crossing_groups": 18,
+          "crossing_groups_with_identical_labels": 11,
+          "crossing_label_agreement_percentage": 61.111111111111114
+        },
+        {
+          "split": 4,
+          "num_train_nodes": 1092,
+          "num_test_nodes": 456,
+          "leaking_test_nodes": 68,
+          "leakage_percentage": 14.912280701754385,
+          "crossing_groups": 18,
+          "crossing_groups_with_identical_labels": 9,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 5,
+          "num_train_nodes": 1092,
+          "num_test_nodes": 456,
+          "leaking_test_nodes": 66,
+          "leakage_percentage": 14.473684210526315,
+          "crossing_groups": 18,
+          "crossing_groups_with_identical_labels": 10,
+          "crossing_label_agreement_percentage": 55.55555555555556
+        },
+        {
+          "split": 6,
+          "num_train_nodes": 1092,
+          "num_test_nodes": 456,
+          "leaking_test_nodes": 60,
+          "leakage_percentage": 13.157894736842104,
+          "crossing_groups": 15,
+          "crossing_groups_with_identical_labels": 9,
+          "crossing_label_agreement_percentage": 60.0
+        },
+        {
+          "split": 7,
+          "num_train_nodes": 1092,
+          "num_test_nodes": 456,
+          "leaking_test_nodes": 67,
+          "leakage_percentage": 14.692982456140351,
+          "crossing_groups": 15,
+          "crossing_groups_with_identical_labels": 7,
+          "crossing_label_agreement_percentage": 46.666666666666664
+        },
+        {
+          "split": 8,
+          "num_train_nodes": 1092,
+          "num_test_nodes": 456,
+          "leaking_test_nodes": 79,
+          "leakage_percentage": 17.32456140350877,
+          "crossing_groups": 19,
+          "crossing_groups_with_identical_labels": 11,
+          "crossing_label_agreement_percentage": 57.89473684210526
+        },
+        {
+          "split": 9,
+          "num_train_nodes": 1092,
+          "num_test_nodes": 456,
+          "leaking_test_nodes": 59,
+          "leakage_percentage": 12.93859649122807,
+          "crossing_groups": 17,
+          "crossing_groups_with_identical_labels": 10,
+          "crossing_label_agreement_percentage": 58.8235294117647
+        }
+      ],
+      "leakage_summary": {
+        "mean_leakage_percentage": 14.451754385964913,
+        "max_leakage_percentage": 17.32456140350877,
+        "min_leakage_percentage": 12.93859649122807,
+        "leaking_test_nodes_total": 659
+      }
+    },
+    {
+      "dataset": null,
+      "mode": "filtered",
+      "duplicates": {
+        "tolerance": 1e-06,
+        "grouping_method": "exact_integer_grid",
+        "num_nodes": 890,
+        "num_unique_feature_vectors": 790,
+        "duplicate_groups": 5,
+        "duplicate_pairs": 4384,
+        "duplicate_vertices": 105,
+        "duplicate_percentage": 11.797752808988765,
+        "largest_group": 94,
+        "groups_with_identical_labels": 3,
+        "groups_with_conflicting_labels": 2,
+        "label_agreement_percentage": 8.571428571428571
+      },
+      "leakage": [
+        {
+          "split": 0,
+          "num_train_nodes": 409,
+          "num_test_nodes": 194,
+          "leaking_test_nodes": 19,
+          "leakage_percentage": 9.793814432989691,
+          "crossing_groups": 3,
+          "crossing_groups_with_identical_labels": 2,
+          "crossing_label_agreement_percentage": 66.66666666666667
+        },
+        {
+          "split": 1,
+          "num_train_nodes": 427,
+          "num_test_nodes": 161,
+          "leaking_test_nodes": 17,
+          "leakage_percentage": 10.559006211180124,
+          "crossing_groups": 4,
+          "crossing_groups_with_identical_labels": 3,
+          "crossing_label_agreement_percentage": 75.0
+        },
+        {
+          "split": 2,
+          "num_train_nodes": 422,
+          "num_test_nodes": 178,
+          "leaking_test_nodes": 16,
+          "leakage_percentage": 8.98876404494382,
+          "crossing_groups": 2,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 3,
+          "num_train_nodes": 412,
+          "num_test_nodes": 184,
+          "leaking_test_nodes": 25,
+          "leakage_percentage": 13.58695652173913,
+          "crossing_groups": 3,
+          "crossing_groups_with_identical_labels": 2,
+          "crossing_label_agreement_percentage": 66.66666666666667
+        },
+        {
+          "split": 4,
+          "num_train_nodes": 440,
+          "num_test_nodes": 182,
+          "leaking_test_nodes": 22,
+          "leakage_percentage": 12.087912087912088,
+          "crossing_groups": 2,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 5,
+          "num_train_nodes": 434,
+          "num_test_nodes": 164,
+          "leaking_test_nodes": 15,
+          "leakage_percentage": 9.146341463414634,
+          "crossing_groups": 2,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 6,
+          "num_train_nodes": 418,
+          "num_test_nodes": 188,
+          "leaking_test_nodes": 17,
+          "leakage_percentage": 9.042553191489361,
+          "crossing_groups": 2,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 7,
+          "num_train_nodes": 421,
+          "num_test_nodes": 159,
+          "leaking_test_nodes": 16,
+          "leakage_percentage": 10.062893081761006,
+          "crossing_groups": 2,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 8,
+          "num_train_nodes": 431,
+          "num_test_nodes": 172,
+          "leaking_test_nodes": 27,
+          "leakage_percentage": 15.69767441860465,
+          "crossing_groups": 2,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 9,
+          "num_train_nodes": 426,
+          "num_test_nodes": 186,
+          "leaking_test_nodes": 17,
+          "leakage_percentage": 9.13978494623656,
+          "crossing_groups": 4,
+          "crossing_groups_with_identical_labels": 3,
+          "crossing_label_agreement_percentage": 75.0
+        }
+      ],
+      "leakage_summary": {
+        "mean_leakage_percentage": 10.810570040027107,
+        "max_leakage_percentage": 15.69767441860465,
+        "min_leakage_percentage": 8.98876404494382,
+        "leaking_test_nodes_total": 191
+      }
+    },
+    {
+      "dataset": null,
+      "mode": "raw",
+      "duplicates": {
+        "tolerance": 1e-06,
+        "grouping_method": "exact_integer_grid",
+        "num_nodes": 5201,
+        "num_unique_feature_vectors": 4980,
+        "duplicate_groups": 44,
+        "duplicate_pairs": 13608,
+        "duplicate_vertices": 265,
+        "duplicate_percentage": 5.095174004999039,
+        "largest_group": 165,
+        "groups_with_identical_labels": 17,
+        "groups_with_conflicting_labels": 27,
+        "label_agreement_percentage": 13.20754716981132
+      },
+      "leakage": [
+        {
+          "split": 0,
+          "num_train_nodes": 2496,
+          "num_test_nodes": 1041,
+          "leaking_test_nodes": 52,
+          "leakage_percentage": 4.995196926032661,
+          "crossing_groups": 15,
+          "crossing_groups_with_identical_labels": 3,
+          "crossing_label_agreement_percentage": 20.0
+        },
+        {
+          "split": 1,
+          "num_train_nodes": 2496,
+          "num_test_nodes": 1041,
+          "leaking_test_nodes": 45,
+          "leakage_percentage": 4.322766570605188,
+          "crossing_groups": 10,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 10.0
+        },
+        {
+          "split": 2,
+          "num_train_nodes": 2496,
+          "num_test_nodes": 1041,
+          "leaking_test_nodes": 38,
+          "leakage_percentage": 3.6503362151777137,
+          "crossing_groups": 10,
+          "crossing_groups_with_identical_labels": 3,
+          "crossing_label_agreement_percentage": 30.0
+        },
+        {
+          "split": 3,
+          "num_train_nodes": 2496,
+          "num_test_nodes": 1041,
+          "leaking_test_nodes": 37,
+          "leakage_percentage": 3.5542747358309317,
+          "crossing_groups": 13,
+          "crossing_groups_with_identical_labels": 5,
+          "crossing_label_agreement_percentage": 38.46153846153846
+        },
+        {
+          "split": 4,
+          "num_train_nodes": 2496,
+          "num_test_nodes": 1041,
+          "leaking_test_nodes": 41,
+          "leakage_percentage": 3.9385206532180597,
+          "crossing_groups": 12,
+          "crossing_groups_with_identical_labels": 4,
+          "crossing_label_agreement_percentage": 33.333333333333336
+        },
+        {
+          "split": 5,
+          "num_train_nodes": 2496,
+          "num_test_nodes": 1041,
+          "leaking_test_nodes": 40,
+          "leakage_percentage": 3.8424591738712777,
+          "crossing_groups": 15,
+          "crossing_groups_with_identical_labels": 2,
+          "crossing_label_agreement_percentage": 13.333333333333334
+        },
+        {
+          "split": 6,
+          "num_train_nodes": 2496,
+          "num_test_nodes": 1041,
+          "leaking_test_nodes": 47,
+          "leakage_percentage": 4.514889529298751,
+          "crossing_groups": 8,
+          "crossing_groups_with_identical_labels": 2,
+          "crossing_label_agreement_percentage": 25.0
+        },
+        {
+          "split": 7,
+          "num_train_nodes": 2496,
+          "num_test_nodes": 1041,
+          "leaking_test_nodes": 45,
+          "leakage_percentage": 4.322766570605188,
+          "crossing_groups": 11,
+          "crossing_groups_with_identical_labels": 5,
+          "crossing_label_agreement_percentage": 45.45454545454545
+        },
+        {
+          "split": 8,
+          "num_train_nodes": 2496,
+          "num_test_nodes": 1041,
+          "leaking_test_nodes": 53,
+          "leakage_percentage": 5.091258405379443,
+          "crossing_groups": 12,
+          "crossing_groups_with_identical_labels": 4,
+          "crossing_label_agreement_percentage": 33.333333333333336
+        },
+        {
+          "split": 9,
+          "num_train_nodes": 2496,
+          "num_test_nodes": 1041,
+          "leaking_test_nodes": 40,
+          "leakage_percentage": 3.8424591738712777,
+          "crossing_groups": 13,
+          "crossing_groups_with_identical_labels": 3,
+          "crossing_label_agreement_percentage": 23.076923076923077
+        }
+      ],
+      "leakage_summary": {
+        "mean_leakage_percentage": 4.207492795389049,
+        "max_leakage_percentage": 5.091258405379443,
+        "min_leakage_percentage": 3.5542747358309317,
+        "leaking_test_nodes_total": 438
+      }
+    },
+    {
+      "dataset": null,
+      "mode": "filtered",
+      "duplicates": {
+        "tolerance": 1e-06,
+        "grouping_method": "exact_integer_grid",
+        "num_nodes": 2223,
+        "num_unique_feature_vectors": 2085,
+        "duplicate_groups": 20,
+        "duplicate_pairs": 6364,
+        "duplicate_vertices": 158,
+        "duplicate_percentage": 7.107512370670265,
+        "largest_group": 113,
+        "groups_with_identical_labels": 12,
+        "groups_with_conflicting_labels": 8,
+        "label_agreement_percentage": 15.189873417721518
+      },
+      "leakage": [
+        {
+          "split": 0,
+          "num_train_nodes": 1053,
+          "num_test_nodes": 452,
+          "leaking_test_nodes": 29,
+          "leakage_percentage": 6.415929203539823,
+          "crossing_groups": 4,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 25.0
+        },
+        {
+          "split": 1,
+          "num_train_nodes": 1080,
+          "num_test_nodes": 443,
+          "leaking_test_nodes": 27,
+          "leakage_percentage": 6.094808126410835,
+          "crossing_groups": 4,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 25.0
+        },
+        {
+          "split": 2,
+          "num_train_nodes": 1047,
+          "num_test_nodes": 450,
+          "leaking_test_nodes": 20,
+          "leakage_percentage": 4.444444444444445,
+          "crossing_groups": 2,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 3,
+          "num_train_nodes": 1060,
+          "num_test_nodes": 450,
+          "leaking_test_nodes": 27,
+          "leakage_percentage": 6.0,
+          "crossing_groups": 10,
+          "crossing_groups_with_identical_labels": 5,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 4,
+          "num_train_nodes": 1055,
+          "num_test_nodes": 449,
+          "leaking_test_nodes": 27,
+          "leakage_percentage": 6.013363028953229,
+          "crossing_groups": 8,
+          "crossing_groups_with_identical_labels": 4,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 5,
+          "num_train_nodes": 1077,
+          "num_test_nodes": 455,
+          "leaking_test_nodes": 21,
+          "leakage_percentage": 4.615384615384615,
+          "crossing_groups": 5,
+          "crossing_groups_with_identical_labels": 0,
+          "crossing_label_agreement_percentage": 0.0
+        },
+        {
+          "split": 6,
+          "num_train_nodes": 1085,
+          "num_test_nodes": 446,
+          "leaking_test_nodes": 29,
+          "leakage_percentage": 6.502242152466367,
+          "crossing_groups": 5,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 20.0
+        },
+        {
+          "split": 7,
+          "num_train_nodes": 1051,
+          "num_test_nodes": 433,
+          "leaking_test_nodes": 24,
+          "leakage_percentage": 5.542725173210162,
+          "crossing_groups": 6,
+          "crossing_groups_with_identical_labels": 3,
+          "crossing_label_agreement_percentage": 50.0
+        },
+        {
+          "split": 8,
+          "num_train_nodes": 1049,
+          "num_test_nodes": 483,
+          "leaking_test_nodes": 32,
+          "leakage_percentage": 6.625258799171843,
+          "crossing_groups": 4,
+          "crossing_groups_with_identical_labels": 1,
+          "crossing_label_agreement_percentage": 25.0
+        },
+        {
+          "split": 9,
+          "num_train_nodes": 1074,
+          "num_test_nodes": 416,
+          "leaking_test_nodes": 25,
+          "leakage_percentage": 6.009615384615385,
+          "crossing_groups": 6,
+          "crossing_groups_with_identical_labels": 3,
+          "crossing_label_agreement_percentage": 50.0
+        }
+      ],
+      "leakage_summary": {
+        "mean_leakage_percentage": 5.826377092819671,
+        "max_leakage_percentage": 6.625258799171843,
+        "min_leakage_percentage": 4.444444444444445,
+        "leaking_test_nodes_total": 261
+      }
+    },
+    {
+      "dataset": null,
+      "mode": "raw",
+      "duplicates": {
+        "tolerance": 1e-06,
+        "grouping_method": "exact_integer_grid",
+        "num_nodes": 7600,
+        "num_unique_feature_vectors": 6014,
+        "duplicate_groups": 390,
+        "duplicate_pairs": 31362,
+        "duplicate_vertices": 1976,
+        "duplicate_percentage": 26.0,
+        "largest_group": 172,
+        "groups_with_identical_labels": 57,
+        "groups_with_conflicting_labels": 333,
+        "label_agreement_percentage": 6.174089068825911
+      },
+      "leakage": [
+        {
+          "split": 0,
+          "num_train_nodes": 3648,
+          "num_test_nodes": 1520,
+          "leaking_test_nodes": 329,
+          "leakage_percentage": 21.644736842105264,
+          "crossing_groups": 150,
+          "crossing_groups_with_identical_labels": 17,
+          "crossing_label_agreement_percentage": 11.333333333333334
+        },
+        {
+          "split": 1,
+          "num_train_nodes": 3648,
+          "num_test_nodes": 1520,
+          "leaking_test_nodes": 339,
+          "leakage_percentage": 22.30263157894737,
+          "crossing_groups": 158,
+          "crossing_groups_with_identical_labels": 19,
+          "crossing_label_agreement_percentage": 12.025316455696203
+        },
+        {
+          "split": 2,
+          "num_train_nodes": 3648,
+          "num_test_nodes": 1520,
+          "leaking_test_nodes": 336,
+          "leakage_percentage": 22.105263157894736,
+          "crossing_groups": 142,
+          "crossing_groups_with_identical_labels": 9,
+          "crossing_label_agreement_percentage": 6.338028169014085
+        },
+        {
+          "split": 3,
+          "num_train_nodes": 3648,
+          "num_test_nodes": 1520,
+          "leaking_test_nodes": 346,
+          "leakage_percentage": 22.763157894736842,
+          "crossing_groups": 146,
+          "crossing_groups_with_identical_labels": 12,
+          "crossing_label_agreement_percentage": 8.219178082191782
+        },
+        {
+          "split": 4,
+          "num_train_nodes": 3648,
+          "num_test_nodes": 1520,
+          "leaking_test_nodes": 357,
+          "leakage_percentage": 23.486842105263158,
+          "crossing_groups": 157,
+          "crossing_groups_with_identical_labels": 17,
+          "crossing_label_agreement_percentage": 10.828025477707007
+        },
+        {
+          "split": 5,
+          "num_train_nodes": 3648,
+          "num_test_nodes": 1520,
+          "leaking_test_nodes": 337,
+          "leakage_percentage": 22.17105263157895,
+          "crossing_groups": 141,
+          "crossing_groups_with_identical_labels": 11,
+          "crossing_label_agreement_percentage": 7.801418439716312
+        },
+        {
+          "split": 6,
+          "num_train_nodes": 3648,
+          "num_test_nodes": 1520,
+          "leaking_test_nodes": 356,
+          "leakage_percentage": 23.42105263157895,
+          "crossing_groups": 147,
+          "crossing_groups_with_identical_labels": 11,
+          "crossing_label_agreement_percentage": 7.482993197278912
+        },
+        {
+          "split": 7,
+          "num_train_nodes": 3648,
+          "num_test_nodes": 1520,
+          "leaking_test_nodes": 354,
+          "leakage_percentage": 23.289473684210527,
+          "crossing_groups": 142,
+          "crossing_groups_with_identical_labels": 13,
+          "crossing_label_agreement_percentage": 9.154929577464788
+        },
+        {
+          "split": 8,
+          "num_train_nodes": 3648,
+          "num_test_nodes": 1520,
+          "leaking_test_nodes": 339,
+          "leakage_percentage": 22.30263157894737,
+          "crossing_groups": 152,
+          "crossing_groups_with_identical_labels": 13,
+          "crossing_label_agreement_percentage": 8.552631578947368
+        },
+        {
+          "split": 9,
+          "num_train_nodes": 3648,
+          "num_test_nodes": 1520,
+          "leaking_test_nodes": 302,
+          "leakage_percentage": 19.86842105263158,
+          "crossing_groups": 133,
+          "crossing_groups_with_identical_labels": 9,
+          "crossing_label_agreement_percentage": 6.7669172932330826
+        }
+      ],
+      "leakage_summary": {
+        "mean_leakage_percentage": 22.335526315789473,
+        "max_leakage_percentage": 23.486842105263158,
+        "min_leakage_percentage": 19.86842105263158,
+        "leaking_test_nodes_total": 3395
+      }
+    },
+    {
+      "dataset": null,
+      "mode": "filtered",
+      "duplicates": {
+        "tolerance": 1e-06,
+        "grouping_method": "exact_integer_grid",
+        "num_nodes": 7600,
+        "num_unique_feature_vectors": 6014,
+        "duplicate_groups": 390,
+        "duplicate_pairs": 31362,
+        "duplicate_vertices": 1976,
+        "duplicate_percentage": 26.0,
+        "largest_group": 172,
+        "groups_with_identical_labels": 57,
+        "groups_with_conflicting_labels": 333,
+        "label_agreement_percentage": 6.174089068825911
+      },
+      "leakage": [
+        {
+          "split": 0,
+          "num_train_nodes": 3799,
+          "num_test_nodes": 1901,
+          "leaking_test_nodes": 436,
+          "leakage_percentage": 22.93529721199369,
+          "crossing_groups": 181,
+          "crossing_groups_with_identical_labels": 22,
+          "crossing_label_agreement_percentage": 12.154696132596685
+        },
+        {
+          "split": 1,
+          "num_train_nodes": 3799,
+          "num_test_nodes": 1901,
+          "leaking_test_nodes": 424,
+          "leakage_percentage": 22.30405049973698,
+          "crossing_groups": 166,
+          "crossing_groups_with_identical_labels": 10,
+          "crossing_label_agreement_percentage": 6.024096385542169
+        },
+        {
+          "split": 2,
+          "num_train_nodes": 3799,
+          "num_test_nodes": 1901,
+          "leaking_test_nodes": 426,
+          "leakage_percentage": 22.409258285113097,
+          "crossing_groups": 175,
+          "crossing_groups_with_identical_labels": 22,
+          "crossing_label_agreement_percentage": 12.571428571428571
+        },
+        {
+          "split": 3,
+          "num_train_nodes": 3799,
+          "num_test_nodes": 1901,
+          "leaking_test_nodes": 395,
+          "leakage_percentage": 20.77853761178327,
+          "crossing_groups": 164,
+          "crossing_groups_with_identical_labels": 13,
+          "crossing_label_agreement_percentage": 7.926829268292683
+        },
+        {
+          "split": 4,
+          "num_train_nodes": 3799,
+          "num_test_nodes": 1901,
+          "leaking_test_nodes": 437,
+          "leakage_percentage": 22.987901104681747,
+          "crossing_groups": 175,
+          "crossing_groups_with_identical_labels": 16,
+          "crossing_label_agreement_percentage": 9.142857142857142
+        },
+        {
+          "split": 5,
+          "num_train_nodes": 3799,
+          "num_test_nodes": 1901,
+          "leaking_test_nodes": 377,
+          "leakage_percentage": 19.83166754339821,
+          "crossing_groups": 157,
+          "crossing_groups_with_identical_labels": 12,
+          "crossing_label_agreement_percentage": 7.643312101910828
+        },
+        {
+          "split": 6,
+          "num_train_nodes": 3799,
+          "num_test_nodes": 1901,
+          "leaking_test_nodes": 412,
+          "leakage_percentage": 21.672803787480273,
+          "crossing_groups": 178,
+          "crossing_groups_with_identical_labels": 21,
+          "crossing_label_agreement_percentage": 11.797752808988765
+        },
+        {
+          "split": 7,
+          "num_train_nodes": 3799,
+          "num_test_nodes": 1901,
+          "leaking_test_nodes": 429,
+          "leakage_percentage": 22.567069963177275,
+          "crossing_groups": 169,
+          "crossing_groups_with_identical_labels": 15,
+          "crossing_label_agreement_percentage": 8.875739644970414
+        },
+        {
+          "split": 8,
+          "num_train_nodes": 3799,
+          "num_test_nodes": 1901,
+          "leaking_test_nodes": 450,
+          "leakage_percentage": 23.671751709626513,
+          "crossing_groups": 178,
+          "crossing_groups_with_identical_labels": 15,
+          "crossing_label_agreement_percentage": 8.426966292134832
+        },
+        {
+          "split": 9,
+          "num_train_nodes": 3799,
+          "num_test_nodes": 1901,
+          "leaking_test_nodes": 410,
+          "leakage_percentage": 21.567596002104157,
+          "crossing_groups": 178,
+          "crossing_groups_with_identical_labels": 15,
+          "crossing_label_agreement_percentage": 8.426966292134832
+        }
+      ],
+      "leakage_summary": {
+        "mean_leakage_percentage": 22.07259337190952,
+        "max_leakage_percentage": 23.671751709626513,
+        "min_leakage_percentage": 19.83166754339821,
+        "leaking_test_nodes_total": 4196
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+dataset,model,metric,n_raw,n_filtered,mean_raw,mean_filtered,difference_filtered_minus_raw,test
+actor,MLP,macro_f1,10,10,0.3189840799384477,0.3265755424311853,0.007591462492737622,not performed (different node populations or split masks)
+actor,GCN,macro_f1,10,10,0.21095483682142366,0.2094917287311513,-0.0014631080902723637,not performed (different node populations or split masks)
+actor,GAT,macro_f1,10,10,0.20107641843513036,0.2056299812936766,0.004553562858546245,not performed (different node populations or split masks)
+actor,H2GCN,macro_f1,10,10,0.2952339909536506,0.29995197500858706,0.004717984054936453,not performed (different node populations or split masks)
+chameleon,MLP,macro_f1,10,10,0.4913229407514491,0.30331224605136203,-0.18801069470008708,not performed (different node populations or split masks)
+chameleon,GCN,macro_f1,10,10,0.6249386097625811,0.28336196091333193,-0.34157664884924915,not performed (different node populations or split masks)
+chameleon,GAT,macro_f1,10,10,0.6320306486288525,0.3164894193355092,-0.3155412292933433,not performed (different node populations or split masks)
+chameleon,H2GCN,macro_f1,10,10,0.6056949795228669,0.351868767480473,-0.25382621204239386,not performed (different node populations or split masks)
+squirrel,MLP,macro_f1,10,10,0.31355196144924236,0.22953722349062128,-0.08401473795862108,not performed (different node populations or split masks)
+squirrel,GCN,macro_f1,10,10,0.45359853281976725,0.22411795440474763,-0.22948057841501962,not performed (different node populations or split masks)
+squirrel,GAT,macro_f1,10,10,0.4232239288537806,0.18889679714290097,-0.2343271317108796,not performed (different node populations or split masks)
+squirrel,H2GCN,macro_f1,10,10,0.4044324526303423,0.26241817613328555,-0.14201427649705672,not performed (different node populations or split masks)

@@ -1,0 +1,13 @@
+dataset,model,metric,n_raw,n_filtered,mean_raw,mean_filtered,difference_filtered_minus_raw,test
+actor,MLP,accuracy,10,10,0.35144736842105256,0.35770647027880065,0.006259101857748084,not performed (different node populations or split masks)
+actor,GCN,accuracy,10,10,0.2978289473684211,0.30073645449763287,0.0029075071292117838,not performed (different node populations or split masks)
+actor,GAT,accuracy,10,10,0.2936184210526316,0.2963703314045239,0.002751910351892317,not performed (different node populations or split masks)
+actor,H2GCN,accuracy,10,10,0.35697368421052633,0.3633350867964229,0.0063614025858965695,not performed (different node populations or split masks)
+chameleon,MLP,accuracy,10,10,0.500877192982456,0.37571031087738055,-0.12516688210507548,not performed (different node populations or split masks)
+chameleon,GCN,accuracy,10,10,0.6245614035087719,0.3591718139936841,-0.2653895895150878,not performed (different node populations or split masks)
+chameleon,GAT,accuracy,10,10,0.6313596491228071,0.387468356938812,-0.24389129218399508,not performed (different node populations or split masks)
+chameleon,H2GCN,accuracy,10,10,0.6048245614035088,0.41332468673107997,-0.19149987467242885,not performed (different node populations or split masks)
+squirrel,MLP,accuracy,10,10,0.33285302593659943,0.34744424217417996,0.014591216237580529,not performed (different node populations or split masks)
+squirrel,GCN,accuracy,10,10,0.4626320845341018,0.3467731121545262,-0.1158589723795756,not performed (different node populations or split masks)
+squirrel,GAT,accuracy,10,10,0.43160422670509135,0.3442312041158667,-0.08737302258922464,not performed (different node populations or split masks)
+squirrel,H2GCN,accuracy,10,10,0.4212295869356388,0.37892554884212637,-0.04230403809351241,not performed (different node populations or split masks)
