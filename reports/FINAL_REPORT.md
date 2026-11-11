@@ -726,7 +726,9 @@ wide concatenated representation favours frequent classes.
 * **Embedding analysis.** t-SNE is a stochastic projection computed per model; panel
   axes are not comparable and visual cluster separation is not a proof of
   oversmoothing. The kNN/silhouette diagnostics partially mitigate this but are
-  themselves computed in the standardised embedding space.
+  themselves computed in the standardised embedding space. Only t-SNE is used:
+  UMAP would require an additional dependency (`umap-learn`) that is not part of the
+  pinned environment.
 * **PDF.** No LaTeX/Pandoc toolchain is installed in the pinned environment, so the
   report is delivered as Markdown (see section 14).
 
