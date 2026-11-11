@@ -17,8 +17,8 @@ consists of 240 primary runs (4 models × 3 datasets × 2 data conditions × 10 
 and 80 H2GCN ablation runs. Every model uses Adam (lr = 0.01, weight decay = 5e-4),
 dropout 0.5, validation-loss early stopping (patience 50) and a single test
 evaluation of the restored best checkpoint. We additionally audit duplicate feature
-vectors and train-test leakage, and analyse paired per-split differences with Holm
-correction.
+vectors and train-test feature overlap, and analyse paired per-split differences with
+Holm correction.
 
 All 240 primary runs and all 80 ablation runs completed successfully. On the original
 Geom-GCN splits GCN, GAT and H2GCN outperform the MLP by 8.8–13.1 accuracy points
@@ -28,14 +28,19 @@ advantage largely disappears: on filtered Chameleon and Squirrel GCN is −1.65 
 stays above it (+3.76 pp, Holm p = 0.129; +3.15 pp, Holm p = 0.006). On Actor, where
 26.0 % of nodes have a feature-identical twin, GCN and GAT are 5.4–6.1 accuracy
 points and 10.8–12.1 macro-F1 points *worse* than the MLP (p < 0.0001), while H2GCN
-is accuracy-neutral but 2.4–2.7 F1 points worse. The audit finds 4.2–26.0 %
-duplicate nodes and 4.2–22.3 % mean train-test leakage; upstream filtering still
-leaves 10.8 % and 5.8 % leakage on Chameleon and Squirrel. Ablations show that
-H2GCN's one-hop branch is essential (removing it costs 10.6 and 5.8 pp on raw
-Chameleon/Squirrel) while the exact two-hop branch adds nothing measurable except on
-Squirrel filtered. The widely reported graph-structure advantage on these benchmarks
-is therefore largely a property of the leaked raw splits rather than of message
-passing.
+is accuracy-neutral but 2.4–2.7 F1 points worse because the graph models never or
+almost never predict the smallest Actor class (predicted share 0.000–0.002 versus
+0.093 for the MLP). The audit finds 5.1–26.0 % of
+nodes in feature-identical groups and 4.2–22.3 % mean train-test *feature overlap*;
+upstream filtering still leaves 10.8 % and 5.8 % overlap on Chameleon and Squirrel.
+Label agreement inside duplicate groups is low (6.2–19.7 % of duplicate nodes), so
+feature overlap is only an upper bound on how often a matching feature vector also
+implies a matching label. Ablations show that H2GCN's one-hop branch is essential
+(removing it costs 10.6 and 5.8 pp on raw Chameleon/Squirrel) while the exact two-hop
+branch adds nothing measurable except on Squirrel filtered. These results are
+consistent with the benchmark-leakage critique of Platonov et al.; because the raw
+and filtered conditions also differ in node populations and splits, we do not
+attribute the entire difference to leakage.
 
 ---
 
@@ -70,8 +75,8 @@ Research questions:
 * **RQ2** When does GCN help or hurt, and does attention (GAT) behave differently?
 * **RQ3** Does H2GCN benefit from exact two-hop neighbourhoods?
 * **RQ4** How does duplicate-node removal change the conclusions?
-* **RQ5** How large is the measurable duplicate / leakage problem, and are the
-  observed differences statistically and practically significant?
+* **RQ5** How large is the measurable duplicate / train-test feature overlap problem,
+  and are the observed differences statistically and practically significant?
 
 ---
 
@@ -91,10 +96,27 @@ Research questions:
 graph); average degree is `2|E|/N`. "Adjusted" uses degree-weighted class
 proportions (Lim et al., 2021), "Adjusted (node prop.)" uses plain class
 proportions `p_k = n_k/N`. All three graphs are strongly heterophilous: edge
-homophily ≈ 0.21–0.24 while the classes are almost balanced. Adjusted homophily is
-close to zero everywhere and is **negative** for Squirrel filtered (−0.034 under
-node proportions), i.e. edges are less homophilous than random node pairs; the
-measure is not bounded below by zero.*
+homophily ≈ 0.21–0.24. Adjusted homophily is close to zero everywhere and is
+**negative** for Squirrel filtered (−0.034 under node proportions), i.e. edges are
+less homophilous than random node pairs; the measure is not bounded below by zero.*
+
+**Class balance differs substantially between conditions** (`class_counts` in
+`reports/dataset_summary.csv`):
+
+| Condition | Class counts (classes 0–4) | Max / min |
+|---|---|---|
+| Chameleon / raw | 456, 460, 453, 521, 387 | 1.35 |
+| Chameleon / filtered | 242, 134, 209, 164, 141 | 1.81 |
+| Squirrel / raw | 1042, 1040, 1039, 1040, 1040 | 1.00 |
+| Squirrel / filtered | 756, 516, 397, 321, 233 | 3.24 |
+| Actor / raw | 853, 1337, 1630, 1815, 1965 | 2.30 |
+| Actor / filtered | 853, 1337, 1630, 1815, 1965 | 2.30 |
+
+Chameleon raw is nearly balanced (1.35) and Squirrel raw is essentially exactly
+balanced, whereas Squirrel filtered (3.24) and Actor (2.30) are strongly imbalanced.
+Duplicate removal therefore changes class balance as well as graph size, so
+macro-F1 and per-class behaviour must be interpreted separately from accuracy, and
+accuracy and F1 are not interchangeable across conditions.
 
 **Origin and splits.**
 
@@ -128,11 +150,12 @@ descriptive.
 `||x_i − x_j||_2 < 1e-6`. Rows are deduplicated exactly and, when features are not
 integral, near-identical unique rows are merged with a blocked Euclidean
 computation; no `N × N` matrix is ever built. A duplicate group is a maximal set of
-nodes connected by the tolerance relation. Leakage for split `s` is the fraction of
-test nodes whose duplicate group also contains a training node. The audit is
-independent of training: no group or label information reaches any model.
+nodes connected by the tolerance relation. The **train-test feature overlap** of
+split `s` is the fraction of test nodes whose duplicate group also contains a
+training node; it says nothing about whether the labels of those nodes agree. The
+audit is independent of training: no group or label information reaches any model.
 
-| Condition | Duplicate groups | Duplicate pairs | Nodes in duplicate groups | Largest group | Groups with conflicting labels | Label agreement | Mean leakage | Leakage range |
+| Condition | Duplicate groups | Duplicate pairs | Nodes in duplicate groups | Largest group | Groups with conflicting labels | Label agreement | Mean feature overlap | Overlap range |
 |---|---|---|---|---|---|---|---|---|
 | Chameleon / raw | 48 | 27 264 | 375 (16.5 %) | 233 | 20 | 19.7 % | 14.45 % | 12.94–17.32 % |
 | Chameleon / filtered | 5 | 4 384 | 105 (11.8 %) | 94 | 2 | 8.6 % | 10.81 % | 8.99–15.70 % |
@@ -144,21 +167,35 @@ independent of training: no group or label information reaches any model.
 *Audit produced by `scripts/audit_duplicates.py`
 (`results/analysis/duplicate_audit.json`, per-split values in the `.csv`).*
 
-**Interpretation.**
+**Four different quantities, which must not be conflated.**
 
-* Feature-vector duplicates are *not* the same object as the Platonov et al.
-  duplicates, whose criterion is based on the regression target and the outgoing
-  neighbourhood. Filtered Chameleon and Squirrel therefore still contain 11.8 % and
-  7.1 % feature duplicates and 10.8 % / 5.8 % mean leakage: the upstream
-  preprocessing does **not** remove feature-level leakage.
-* Actor — never filtered upstream — has the largest problem: 26 % of nodes share a
-  feature vector with another node and 22.3 % of test nodes have a perfectly
-  matching training node.
-* Duplicate groups rarely agree on the label (only 6.2 %–19.7 % of duplicate nodes
-  belong to label-consistent groups). Identical features with different labels are
-  genuinely ambiguous examples, which bounds what any feature-based model can
-  achieve on them and shows that leakage, not signal, explains part of the accuracy
-  on duplicates.
+1. **Platonov et al. duplicate nodes.** Their criterion is "no incoming edges, same
+   regression target and same set of outgoing edges"; removing them is what produces
+   their 890-node Chameleon and 2 223-node Squirrel files. We use those files but do
+   **not** re-implement or re-verify their node-level removal, and we cannot measure
+   it here because the original regression targets are not part of the released
+   classification data.
+2. **Feature-identical groups (our audit).** Nodes whose feature vectors satisfy
+   `||x_i − x_j||₂ < 1e-6`. These are a feature-space notion only; they ignore
+   neighbourhoods and targets. The share of nodes in such groups is 5.1 % (Squirrel
+   raw) to 26.0 % (Actor) and stays at 11.8 % / 7.1 % after upstream filtering.
+3. **Train-test feature overlap.** The fraction of *test* nodes that have a
+   feature-identical node in the training mask of the same split: 4.21 % (Squirrel
+   raw) to 22.34 % (Actor), and 10.81 % / 5.83 % after filtering. This is a
+   necessary, not a sufficient, condition for copying a label from a training node.
+4. **Actual label transferability.** Measured indirectly by label agreement inside
+   duplicate groups: only 6.2 %–19.7 % of duplicate nodes belong to groups whose
+   labels are all identical, and 2–333 groups per condition contain conflicting
+   labels. For the remaining groups a feature match does **not** imply a label match,
+   so the numbers in point 3 overstate how much of the test set could in principle
+   be "copied".
+
+Consequently we report point 3 as *feature overlap*, not as proven leakage of
+labels, and we do not claim that every overlapping test node is predictable from
+training labels. What can be stated is weaker but still relevant: on all three
+datasets a non-trivial share of test nodes has an exact feature twin in the training
+set, and upstream duplicate-node removal (criterion 1) does not remove those
+feature-level overlaps (criterion 2/3).
 
 ![Duplicate and leakage audit](figures/duplicate_leakage.png)
 
@@ -366,7 +403,7 @@ split masks differ for Actor, so no paired test is computed.*
   information that the features alone preserve.
 * The ordering of models is not stable across datasets: GAT is best on raw
   Chameleon and Squirrel, H2GCN is best on filtered Chameleon/Squirrel and on
-  Actor, and GCN is never the best model once leakage is removed.
+  Actor, and GCN is never the best model once duplicate nodes are removed.
 
 ### 6.5 Training dynamics and cost
 
@@ -386,6 +423,48 @@ time is larger (≈ 3.5 h) because the runs are executed sequentially and datase
 loading and operator construction are included in the wall time. H2GCN on Actor is
 the most expensive configuration (≈ 215 s per run) because the exact two-hop operator
 of that graph covers a large share of all node pairs and is evaluated densely.
+
+### 6.6 Per-class behaviour and confusion matrices
+
+Accuracy and macro-F1 disagree on two conditions, so we evaluate the stored best
+checkpoints again in inference mode (no retraining; `scripts/evaluate_predictions.py`).
+The recomputed test accuracy reproduces the stored value exactly for all 240 runs
+(maximum absolute difference 0.0), which confirms that the checkpoints and masks are
+those of the recorded runs. Predictions are saved as per-run confusion matrices
+(`results/analysis/confusion_matrices.json`) and per-class metrics
+(`results/analysis/per_class_metrics.csv`, `per_class_summary.csv`).
+
+**Actor raw** (mean test support per class: 168.5, 265.6, 333.7, 368.5, 383.7;
+macro-F1 in parentheses):
+
+| Model | F1 c0 | F1 c1 | F1 c2 | F1 c3 | F1 c4 | Predicted share c0…c4 | Macro-F1 |
+|---|---|---|---|---|---|---|---|
+| MLP | 0.222 | 0.275 | 0.235 | 0.291 | 0.573 | 0.093, 0.169, 0.189, 0.247, 0.302 | 0.319 |
+| GCN | 0.000 | 0.071 | 0.230 | 0.300 | 0.454 | 0.000, 0.032, 0.219, 0.335, 0.414 | 0.211 |
+| GAT | 0.000 | 0.054 | 0.203 | 0.309 | 0.439 | 0.000, 0.023, 0.168, 0.364, 0.445 | 0.201 |
+| H2GCN | 0.014 | 0.239 | 0.311 | 0.326 | 0.585 | 0.002, 0.145, 0.345, 0.262, 0.245 | 0.295 |
+
+**Squirrel filtered** (mean test support: 157.0, 100.6, 78.7, 64.7, 46.7):
+
+| Model | F1 c0 | F1 c1 | F1 c2 | F1 c3 | F1 c4 | Predicted share c0…c4 | Macro-F1 |
+|---|---|---|---|---|---|---|---|
+| MLP | 0.551 | 0.215 | 0.148 | 0.092 | 0.142 | 0.563, 0.239, 0.107, 0.058, 0.033 | 0.230 |
+| GCN | 0.545 | 0.184 | 0.102 | 0.115 | 0.175 | 0.640, 0.160, 0.066, 0.066, 0.069 | 0.224 |
+| GAT | 0.537 | 0.122 | 0.105 | 0.106 | 0.074 | 0.745, 0.108, 0.069, 0.056, 0.022 | 0.189 |
+| H2GCN | 0.586 | 0.172 | 0.179 | 0.185 | 0.190 | 0.617, 0.134, 0.131, 0.086, 0.033 | 0.262 |
+
+*Measured facts.* (i) On Actor raw, GCN and GAT **never predict the smallest class**
+(predicted share 0.000, F1 0.000, support 168.5) while the MLP reaches F1 0.222 on
+it; this — not a uniform loss of accuracy — is what drives the 10.8–12.1 macro-F1
+point deficit of GCN/GAT. H2GCN almost never predicts it either (share 0.002,
+F1 0.014), which explains why it matches the MLP in accuracy but not in macro-F1.
+(ii) On Squirrel filtered, GAT assigns 74.5 % of test predictions to the majority
+class (recall 0.839) with F1 0.537 on it, but only 0.074–0.122 on classes 1–4; its
+accuracy (0.344) therefore hides a near-complete minority-class collapse that
+macro-F1 (0.189) exposes. (iii) H2GCN has the best F1 on classes 1–4 of Squirrel
+filtered (0.172–0.190), which is the measured basis of its higher macro-F1 there.
+These are measured outcomes of the saved checkpoints, not inferences from accuracy
+alone; how they arise mechanistically is discussed in section 10.
 
 
 ---
@@ -612,12 +691,15 @@ nor establishes model superiority, and inter-cluster distances are not meaningfu
 **1. Does graph structure improve performance over the MLP?**
 On the original benchmarks, yes, decisively: +8.8 to +13.1 accuracy points for every
 graph model on Chameleon and Squirrel raw (all p < 0.0001 after Holm). On the
-duplicate-audited data the answer changes: four of six graph/condition combinations
+duplicate-audited data the picture changes: four of six graph/condition combinations
 are statistically indistinguishable from the MLP, GCN is slightly worse on both
 filtered datasets, and on Actor GCN/GAT are 5.4–6.1 points *worse*. The defensible
-statement is conditional: **graph structure helps on the raw benchmarks largely
-because of leakage, and its genuine contribution after auditing is small and
-dataset-specific.**
+statement is therefore conditional: **graph structure helps on the raw benchmarks,
+whereas after duplicate auditing its contribution is small, dataset-specific and
+mostly not statistically significant.** This pattern is consistent with the leakage
+critique of Platonov et al. (2023), but the raw and filtered conditions also differ
+in node populations and split construction, so these runs alone cannot attribute the
+difference to leakage.
 
 **2. When does GCN help or hurt?**
 GCN is the model whose behaviour changes most. It gains +12–13 pp on raw
@@ -643,26 +725,35 @@ MLP on Actor (+0.55 pp, n.s.). The ablations in section 8 show that this gain do
 (Chameleon raw) and 5.8 pp (Squirrel raw). The exception is Squirrel filtered, where
 the two-hop-only variant is 1.33 pp better than the full model (Holm p = 0.048). The
 price of the wide representation is a 2.4–2.7 F1-point deficit relative to the MLP on
-Actor: H2GCN preserves accuracy by favouring frequent classes, not by solving class
-imbalance.
+Actor. The per-class diagnostics (section 6.6) locate it precisely: H2GCN predicts the
+smallest Actor class for only 0.2 % of test nodes (F1 0.014) whereas the MLP reaches
+F1 0.222 on it, while H2GCN is *better* than the MLP on the largest class
+(F1 0.585 vs 0.573). The deficit is a minority-class effect, not a uniform loss.
 
 **5. What changes after filtering?**
-Filtering removes most of the apparent value of message passing. Accuracy drops by
-19–27 pp for the three graph models on Chameleon and by 4–12 pp on Squirrel, while
-the MLP changes by −12.5 pp on Chameleon and +1.5 pp on Squirrel. The ranking also
-changes: GAT is best on raw Chameleon, H2GCN is best on filtered
-Chameleon/Squirrel. This reproduces, with a different implementation and protocol,
-the central observation of Platonov et al. (2023): conclusions drawn on the raw
-Chameleon/Squirrel benchmarks do not transfer to the audited versions.
+Filtering is accompanied by the disappearance of most of the apparent value of
+message passing. Accuracy drops by 19–27 pp for the three graph models on Chameleon
+and by 4–12 pp on Squirrel, while the MLP changes by −12.5 pp on Chameleon and
++1.5 pp on Squirrel. The ranking also changes: GAT is best on raw Chameleon, H2GCN is
+best on filtered Chameleon/Squirrel. This is consistent with the observation of
+Platonov et al. (2023) that conclusions drawn on the raw Chameleon/Squirrel
+benchmarks do not transfer to the audited versions. It does not isolate leakage as
+the cause: filtering also changes the node population, the class balance (Squirrel
+max/min goes from 1.00 to 3.24) and the degree distribution, so several mechanisms
+change at once.
 
-**6. How significant is duplicate leakage?**
-For feature-identical nodes, 14.45 % (Chameleon raw), 4.21 % (Squirrel raw) and
-22.34 % (Actor) of test nodes have an exact training duplicate. Upstream filtering
-reduces but does not eliminate it (10.81 % and 5.83 %) because Platonov et al.
-define duplicates by target *and* neighbourhood, not by identical features. Actor
-was never filtered and carries the largest leakage in our grid. Our numbers are a
-lower bound on leakage: we require exact feature equality, not neighbourhood
-equality.
+**6. How large is the train-test feature overlap, and what does it imply?**
+Measured as the share of test nodes with an exact feature twin in training, the
+overlap is 14.45 % (Chameleon raw), 4.21 % (Squirrel raw) and 22.34 % (Actor), and
+10.81 % / 5.83 % on the upstream-filtered Chameleon/Squirrel. Three caveats apply.
+(i) These numbers use a *feature-based* duplicate criterion, not the target +
+neighbourhood criterion used by Platonov et al., so they are not comparable to their
+duplicate shares (they are smaller). (ii) Overlap is necessary but not sufficient for
+copying a label: only 6.2 %–19.7 % of duplicate nodes sit in label-consistent groups.
+(iii) We do not measure how many of those test nodes a model actually gets right
+because of the overlap. The overlap is therefore evidence of a benchmark weakness,
+consistent with the literature, rather than a direct measurement of exploited
+leakage.
 
 **7. Are the results consistent across datasets?**
 No. The sign of the Structural Delta differs between datasets and conditions
@@ -685,10 +776,13 @@ noise.
 **10. What remains unexpected?**
 (i) MLP accuracy on Chameleon filtered (0.376) is far below Chameleon raw (0.501)
 although the retained features are identical: removing duplicate nodes removes easy
-test nodes and lowers every model's accuracy. (ii) GAT's macro-F1 on Squirrel
-filtered (0.189) is much lower than its accuracy (0.344), a majority-class collapse
-that accuracy hides. (iii) The H2GCN accuracy/F1 split on Actor suggests that the
-wide concatenated representation favours frequent classes.
+test nodes and lowers every model's accuracy. (ii) The disagreement between accuracy
+and macro-F1 is now measured rather than inferred (section 6.6): on Squirrel filtered
+GAT sends 74.5 % of its test predictions to the majority class and obtains F1
+0.074–0.122 on the four minority classes, so its accuracy (0.344) is uninformative
+about minority performance; on Actor raw GCN and GAT never predict the smallest class
+at all. (iii) H2GCN shows the same qualitative minority-class weakness on Actor but
+much less severely, and it is the most balanced model on Squirrel filtered.
 
 
 ---
@@ -757,8 +851,9 @@ Chameleon/Squirrel.
 The practical conclusions are: (i) always report an MLP baseline; (ii) audit
 duplicate nodes before drawing conclusions about heterophily; (iii) prefer
 ego-preserving architectures such as H2GCN when structure is used at all; and
-(iv) treat accuracy and macro-F1 jointly, because aggregation can silently collapse
-minority classes.
+(iv) treat accuracy and macro-F1 jointly: the per-class analysis shows that GCN and
+GAT never predicted the smallest Actor class, and that GAT placed 74.5 % of its
+Squirrel-filtered predictions in the majority class.
 
 
 ---
