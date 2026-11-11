@@ -257,4 +257,3 @@ def _finalize(records, output_dir: Path, expected) -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

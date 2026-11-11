@@ -376,4 +376,3 @@ def plot_ablation_comparison(
         axis.grid(axis="y", alpha=0.3)
     figure.suptitle("H2GCN ablations: contribution of the one-hop and two-hop branches")
     return _save(figure, output_path)
-

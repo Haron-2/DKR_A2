@@ -815,4 +815,3 @@ Pandoc toolchain (`pandoc` is not installed), so no PDF was generated. The compl
 report is delivered as `reports/FINAL_REPORT.md`; converting it requires
 `pandoc reports/FINAL_REPORT.md -o reports/FINAL_REPORT.pdf` on a machine with
 Pandoc and a PDF engine.
-

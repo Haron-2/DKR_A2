@@ -330,4 +330,3 @@ class H2GCN(nn.Module):
 
     def forward(self, x: torch.Tensor, edge_index: torch.Tensor) -> torch.Tensor:
         return self.classifier(self.get_embeddings(x, edge_index))
-

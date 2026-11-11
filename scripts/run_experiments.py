@@ -325,4 +325,3 @@ def _finalize(records, config, results_path, output_dir, expected) -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-
