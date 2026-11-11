@@ -47,7 +47,7 @@ def main(argv: list[str] | None = None) -> int:
     split_rows = []
     for name, mode in conditions:
         data = get_dataset(name, mode, root=args.root, offline=args.offline)
-        audit = audit_dataset(data, tolerance=args.tolerance)
+        audit = audit_dataset(data, tolerance=args.tolerance, name=name)
         record = {"dataset": name, "mode": mode, **audit}
         records.append(record)
         for row in audit["leakage"]:
@@ -68,12 +68,26 @@ def main(argv: list[str] | None = None) -> int:
             "method": {
                 "duplicate_definition": "||x_i - x_j||_2 < tolerance",
                 "tolerance": args.tolerance,
-                "grouping": "exact unique rows followed by a KD-tree radius query",
+                "grouping": (
+                    "exact unique-row grouping when features are integral (the "
+                    "tolerance criterion is then equivalent to exact equality), "
+                    "otherwise blocked Euclidean merging of unique rows"
+                ),
                 "leakage_definition": (
-                    "test node whose duplicate group contains at least one training node"
+                    "train-test feature overlap: a test node whose duplicate feature "
+                    "group contains at least one training node"
                 ),
                 "label_agreement": (
                     "fraction of duplicate nodes in groups whose labels are identical"
+                ),
+                "interpretation_note": (
+                    "Feature overlap is not by itself evidence that a test label can be "
+                    "copied from a training node: this audit does not compare "
+                    "neighbourhoods or regression targets, so it is a different "
+                    "(feature-based) criterion than the duplicate-node definition of "
+                    "Platonov et al. (same regression target and same outgoing "
+                    "neighbourhood). Label agreement among duplicate nodes is reported "
+                    "to bound how often a matching feature vector implies a matching label."
                 ),
             },
             "conditions": records,

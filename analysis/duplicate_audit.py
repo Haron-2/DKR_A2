@@ -230,15 +230,25 @@ def leakage_statistics(
     return records
 
 
-def audit_dataset(data, tolerance: float = DEFAULT_TOLERANCE) -> dict:
-    """Run the duplicate and leakage audit for all ten splits of one dataset."""
+def audit_dataset(
+    data,
+    tolerance: float = DEFAULT_TOLERANCE,
+    name: str | None = None,
+) -> dict:
+    """Run the duplicate and leakage audit for all ten splits of one dataset.
+
+    ``name`` overrides the dataset label; otherwise ``data.metadata["dataset"]``
+    is used so that the JSON never contains a null dataset name.
+    """
     duplicates = duplicate_statistics(data.x, data.y, tolerance=tolerance)
     leakage = leakage_statistics(
         data.x, data.train_mask, data.test_mask, data.y, tolerance=tolerance
     )
     percentages = [record["leakage_percentage"] for record in leakage]
+    metadata = getattr(data, "metadata", None) or {}
+    dataset_name = name or metadata.get("dataset")
     return {
-        "dataset": getattr(data, "name", None),
+        "dataset": dataset_name,
         "duplicates": duplicates,
         "leakage": leakage,
         "leakage_summary": {

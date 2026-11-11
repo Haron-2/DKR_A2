@@ -2,8 +2,10 @@ import math
 
 import pytest
 import torch
+from torch_geometric.data import Data
 
 from analysis.duplicate_audit import (
+    audit_dataset,
     duplicate_statistics,
     find_duplicate_groups,
     leakage_statistics,
@@ -93,6 +95,21 @@ def test_leakage_statistics_on_known_split():
     assert math.isclose(record["leakage_percentage"], 50.0)
     assert record["crossing_groups"] == 1
     assert record["crossing_groups_with_identical_labels"] == 1
+
+
+def test_audit_dataset_reports_the_dataset_name():
+    data = Data(
+        x=torch.tensor([[1.0, 0.0], [1.0, 0.0], [0.0, 1.0]]),
+        y=torch.tensor([0, 0, 1], dtype=torch.int64),
+        edge_index=torch.tensor([[0, 1], [1, 0]], dtype=torch.int64),
+    )
+    data.train_mask = torch.tensor([[True], [False], [True]])
+    data.val_mask = torch.tensor([[False], [False], [False]])
+    data.test_mask = torch.tensor([[False], [True], [False]])
+    data.metadata = {"dataset": "toy"}
+    audit = audit_dataset(data)
+    assert audit["dataset"] == "toy"
+    assert audit_dataset(data, name="override")["dataset"] == "override"
 
 
 def test_holm_correction_matches_manual_values():
