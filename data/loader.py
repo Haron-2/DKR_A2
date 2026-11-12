@@ -39,9 +39,19 @@ SUPPORTED_DATASETS = (
     ("squirrel", "raw"),
     ("squirrel", "filtered"),
     ("actor", "raw"),
+    ("actor", "filtered"),
 )
-CACHE_VERSION = 1
+CACHE_VERSION = 3
 GRAPH_POLICY = "undirected_coalesced_without_self_loops"
+FILTERED_FILES = {
+    "chameleon": "chameleon_filtered.npz",
+    "squirrel": "squirrel_filtered.npz",
+    # Platonov et al. only distribute an actor file that shares the original
+    # Geom-GCN masks; no duplicate-removed actor dataset exists upstream.
+    "actor": "actor.npz",
+}
+ACTOR_FILTERED_SPLIT_SEED = 20230222
+ACTOR_FILTERED_FRACTIONS = (0.5, 0.25, 0.25)
 TENSOR_FIELDS = (
     "x", "y", "edge_index", "source_edge_index", "node_id",
     "train_mask", "val_mask", "test_mask",
@@ -89,7 +99,7 @@ def dataset_fingerprint(data: Data) -> str:
 def _source_files(name: str, mode: str) -> list[dict]:
     directory = Path("raw") / name / mode
     if mode == "filtered":
-        filename = f"{name}_filtered.npz"
+        filename = FILTERED_FILES[name]
         return [{"path": (directory / filename).as_posix(),
                  "url": f"{FILTERED_URL}/{filename}"}]
 
@@ -132,6 +142,43 @@ def _download_file(url: str, destination: Path) -> None:
         finally:
             if temporary_path is not None:
                 temporary_path.unlink(missing_ok=True)
+
+
+def _stratified_masks(
+    y: torch.Tensor,
+    *,
+    num_splits: int = 10,
+    seed: int = ACTOR_FILTERED_SPLIT_SEED,
+    fractions: tuple[float, float, float] = ACTOR_FILTERED_FRACTIONS,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    """Build disjoint, exhaustive, class-stratified [N, num_splits] masks.
+
+    Used only for the custom Actor alternative-split condition, because the
+    upstream files ship the original Geom-GCN masks and no filtered Actor data.
+    """
+    if abs(sum(fractions) - 1.0) > 1e-9:
+        raise ValueError("fractions must sum to one")
+    labels = y.detach().cpu().numpy()
+    num_nodes = labels.shape[0]
+    classes = np.unique(labels)
+    train = np.zeros((num_nodes, num_splits), dtype=bool)
+    val = np.zeros_like(train)
+    test = np.zeros_like(train)
+    rng = np.random.default_rng(seed)
+    for split in range(num_splits):
+        for label in classes:
+            members = rng.permutation(np.flatnonzero(labels == label))
+            train_end = max(1, int(round(fractions[0] * members.size)))
+            val_end = train_end + max(1, int(round(fractions[1] * members.size)))
+            val_end = min(val_end, members.size - 1)
+            train[members[:train_end], split] = True
+            val[members[train_end:val_end], split] = True
+            test[members[val_end:], split] = True
+    return (
+        torch.from_numpy(train),
+        torch.from_numpy(val),
+        torch.from_numpy(test),
+    )
 
 
 def _load_filtered(path: Path) -> Data:
@@ -194,6 +241,16 @@ def get_dataset(
 ) -> Data:
     """Return CPU Data with [N, 10] masks and unnormalized features.
 
+    Six conditions are supported (chameleon, squirrel, actor x raw, filtered).
+    ``raw`` uses the original Geom-GCN benchmark graphs and their ten
+    ``0.6/0.2/0.2`` splits. ``filtered`` uses the Platonov et al. (2023)
+    redistributions: duplicate-node removal for chameleon and squirrel together
+    with their ten corrected masks. For actor no duplicate-removed dataset exists
+    upstream (the distributed ``actor.npz`` reproduces the original Geom-GCN
+    masks), so ``actor/filtered`` keeps the unchanged graph and uses ten custom,
+    class-stratified 50/25/25 splits generated from a documented seed. That
+    condition is a custom reproduction and is labelled as such in the metadata.
+
     The model graph is undirected, without self-loops or duplicate edges.
     source_edge_index preserves edges before this processing. node_id records
     vertex order within a version, not a mapping between raw and filtered nodes.
@@ -203,7 +260,7 @@ def get_dataset(
     if (name, mode) not in SUPPORTED_DATASETS:
         raise ValueError(
             f"Unsupported dataset condition: {name}/{mode}. "
-            "Actor has only raw mode; no official filtered version is configured."
+            f"Supported conditions: {SUPPORTED_DATASETS}"
         )
     root = DEFAULT_ROOT if root is None else Path(root).resolve()
     cache_path = root / "processed" / name / mode / "data.pt"
@@ -224,15 +281,32 @@ def get_dataset(
 
     if mode == "filtered":
         data = _load_filtered(root / sources[0]["path"])
-        split_source = "Platonov et al. official NPZ masks"
+        if name == "actor":
+            # No upstream duplicate-removed Actor dataset exists, so the
+            # "filtered" condition keeps the unchanged graph and uses documented
+            # alternative stratified splits (custom reproduction).
+            train_mask, val_mask, test_mask = _stratified_masks(data.y)
+            data.train_mask = train_mask
+            data.val_mask = val_mask
+            data.test_mask = test_mask
+            split_source = (
+                "custom stratified 50/25/25 splits (seed "
+                f"{ACTOR_FILTERED_SPLIT_SEED}) on the unchanged Platonov actor graph"
+            )
+            split_seed = ACTOR_FILTERED_SPLIT_SEED
+        else:
+            split_source = f"Platonov et al. official {FILTERED_FILES[name]} masks"
+            split_seed = None
     elif name == "actor":
         data = _Actor(root=str(root), force_reload=True)[0]
         split_source = "Geom-GCN film_split_0.6_0.2_{0..9}"
+        split_seed = None
     else:
         data = _WikipediaNetwork(
             root=str(root), name=name, geom_gcn_preprocess=True, force_reload=True
         )[0]
         split_source = f"Geom-GCN {name}_split_0.6_0.2_{{0..9}}"
+        split_seed = None
 
     data.x = data.x.to(torch.float32).contiguous()
     data.y = data.y.to(torch.int64).contiguous()
@@ -257,8 +331,17 @@ def get_dataset(
         "mode": mode,
         "source_revision": FILTERED_REVISION if mode == "filtered" else GEOM_GCN_REVISION,
         "split_source": split_source,
+        "split_seed": split_seed,
+        "duplicate_removal": (
+            "upstream Platonov et al. duplicate-node removal"
+            if mode == "filtered" and name != "actor"
+            else (
+                "none (custom actor alternative splits; no upstream filtered file)"
+                if mode == "filtered"
+                else "none (original benchmark data)"
+            )
+        ),
         "split_ids": list(range(10)),
-        "split_seed": None,
         "graph_policy": GRAPH_POLICY,
         "source_edge_policy": "upstream_PyG_edges" if mode == "raw" else "upstream_NPZ_edges",
         "feature_transform": "none",

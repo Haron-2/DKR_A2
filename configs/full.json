@@ -1,0 +1,38 @@
+{
+  "seed_base": 42,
+  "datasets": ["chameleon", "squirrel", "actor"],
+  "modes": ["raw", "filtered"],
+  "models": ["MLP", "GCN", "GAT", "H2GCN"],
+  "splits": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "data_root": "datasets",
+  "output_dir": "results",
+  "export_embeddings": true,
+  "embedding_split": 0,
+  "training": {
+    "lr": 0.01,
+    "weight_decay": 0.0005,
+    "dropout": 0.5,
+    "patience": 50,
+    "min_delta": 0.0001,
+    "max_epochs": 1000,
+    "device": "cpu"
+  },
+  "model_config": {
+    "hidden_dim": 64,
+    "dropout": 0.5,
+    "gat_heads": 8,
+    "h2gcn_hidden_dim": 64,
+    "h2gcn_normalization": "row",
+    "h2gcn_use_one_hop": true,
+    "h2gcn_use_two_hop": true
+  },
+  "ablations": {
+    "model": "H2GCN",
+    "datasets": ["chameleon", "squirrel"],
+    "modes": ["raw", "filtered"],
+    "variants": [
+      {"name": "no_two_hop", "h2gcn_use_one_hop": true, "h2gcn_use_two_hop": false},
+      {"name": "no_one_hop", "h2gcn_use_one_hop": false, "h2gcn_use_two_hop": true}
+    ]
+  }
+}

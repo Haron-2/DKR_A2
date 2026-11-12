@@ -25,8 +25,8 @@ def _write_reports(records: list[dict], report_dir: Path) -> None:
         "schema_version": 1,
         "datasets": rows,
         "limitations": [
-            "Actor filtered is not configured: only five conditions are supported.",
-            "Raw and filtered splits are not matched experimental pairs.",
+            "Actor filtered uses the Platonov et al. alternative splits only; no official duplicate-removed actor dataset exists.",
+            "Raw and filtered splits are not matched experimental pairs except for Actor, where the node population is identical but the masks differ.",
             "node_id is local to a dataset version, not a raw-filtered mapping.",
         ],
     }
@@ -68,7 +68,10 @@ def main() -> None:
         if args.dataset in ("all", name) and args.mode in ("all", mode)
     ]
     if not conditions:
-        parser.error("Actor has no official filtered condition. Use --dataset actor --mode raw.")
+        parser.error(
+            f"No supported condition matches --dataset {args.dataset} "
+            f"--mode {args.mode}."
+        )
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     torch.set_num_threads(4)

@@ -1,0 +1,10 @@
+{
+  "experiment": "ablation",
+  "expected_runs": 80,
+  "completed_runs": 80,
+  "failed_runs": 0,
+  "missing_runs": 0,
+  "complete": true,
+  "failed_run_ids": [],
+  "missing_run_ids": []
+}

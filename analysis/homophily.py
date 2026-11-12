@@ -38,6 +38,12 @@ def homophily_metrics(edge_index: torch.Tensor, y: torch.Tensor) -> dict:
     Undefined quantities are returned as None. No edges makes edge and adjusted
     homophily undefined; one class among edge endpoints makes adjusted homophily
     undefined. An empty graph also has undefined node homophily.
+
+    ``adjusted_homophily_node_proportions`` is additionally reported using plain
+    node proportions p_k = n_k / N (the formula stated in the assignment). Both
+    quantities are documented because they answer slightly different questions:
+    the degree-weighted version is the expected homophily of a random edge walk,
+    the node-proportion version the expected homophily of two random vertices.
     """
     _validate_graph(edge_index, y)
     num_nodes = y.numel()
@@ -47,6 +53,7 @@ def homophily_metrics(edge_index: torch.Tensor, y: torch.Tensor) -> dict:
         "edge_homophily": None,
         "node_homophily": 0.0 if num_nodes else None,
         "adjusted_homophily": None,
+        "adjusted_homophily_node_proportions": None,
         "expected_edge_homophily": None,
         "node_isolate_policy": "zero_contribution",
     }
@@ -65,11 +72,20 @@ def homophily_metrics(edge_index: torch.Tensor, y: torch.Tensor) -> dict:
     expected = float(class_proportions.square().sum())
     denominator = 1.0 - expected
 
+    class_counts = torch.bincount(class_index).to(torch.float64)
+    node_proportions = class_counts / class_counts.sum()
+    expected_node = float(node_proportions.square().sum())
+    denominator_node = 1.0 - expected_node
+
     result["edge_homophily"] = h_edge
     result["node_homophily"] = float(node_ratios.mean())
     result["expected_edge_homophily"] = expected
     if denominator > 0:
         result["adjusted_homophily"] = (h_edge - expected) / denominator
+    if denominator_node > 0:
+        result["adjusted_homophily_node_proportions"] = (
+            h_edge - expected_node
+        ) / denominator_node
     return result
 
 

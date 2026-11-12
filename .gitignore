@@ -2,5 +2,16 @@
 .cache/
 __pycache__/
 *.py[cod]
+.pytest_cache/
 datasets/
+
+# Generated experiment artifacts that are reproducible and/or large.
+results/smoke/
+results/checkpoints/
+results/logs/
+results/embeddings/
+reports/figures_smoke/
+reports/tables_smoke/
+*.log
+*.err
 
