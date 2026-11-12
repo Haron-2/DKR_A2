@@ -1,4 +1,4 @@
-# A2 вЂ” Heterophily: When Neighbors Mislead
+# A2 Heterophily: When Neighbors Mislead
 
 Reproducible comparison of a structure-blind baseline (MLP) with three graph neural
 networks (GCN, GAT, H2GCN) on Chameleon, Squirrel and Actor, in the original
